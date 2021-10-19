@@ -16,7 +16,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Route path="/Login" exact component={Signin} />
         <Route path="/" exact component={Main} />
-        <Route path='/posting' exact component={Postadd} />
+        <Route path='/write' exact component={Postadd} />
         <Route path='/mypage' exact component={Mypostlist} />
       </ConnectedRouter>
     </React.Fragment>
