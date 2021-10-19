@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import { useDispatch } from 'react-redux';
+import { actionCreators } from '../redux/modules/post';
+
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 
@@ -17,20 +21,33 @@ const Postadd = (props) =>{
     //     console.log(editorRef.current.getInstance().getMarkdown());
     // }
 
+    const dispatch = useDispatch();
+
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+
+    const changeTitle = (e) =>{
+        setTitle(e.target.value);
+    }
+    const changeContent = (e) =>{
+        setContent(e.target.value);
+    }
+
     return(
         <React.Fragment>
             <MDWrap>
                 <Title 
                     type='title' 
                     placeholder='제목을 입력하세요'
+                    onChange={changeTitle}
                 ></Title>
                 <Editor 
-                    initialValue='당신의 이야기를 입력하세요' 
+                    placeholder='당신의 이야기를 적어보세요...' 
                     usageStatistics={false}
                     previewStyle='vertical'
                     height='80vh'
                     // ref={editorRef}
-                    // onChange={onChangeEditorTextHandler}
+                    onChange={changeContent}
                 />
             </MDWrap>
             <BtnWrap>
@@ -50,51 +67,60 @@ const Postadd = (props) =>{
 }
 
 const MDWrap = styled.div`
-    position: relative;
-    height: 100vh;
-    border: 1px solid blue;
+    height: calc(100%-130px);
     box-sizing: border-box;
 `
 
 const Title = styled.textarea`
-    width: 100vw;
-    height: 50px;
+    width: 100%;
+    height: 130px;
+    resize: none;
+    scrollbar-width: none;
     font-size: 48px;
     font-weight: bold;
     border: none;
     padding: 40px;
+    box-sizing: border-box;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `
 
 const BtnWrap = styled.div`
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    bottom: -16px;
-    left:0;
-    border: 1px solid red;
+    position: fixed;
+    bottom: 0;
     box-sizing: border-box;
     width: 100%;
     height: 64px;
     background-color: #fff;
+    box-shadow: 0 0 5px #dbdbdb;
 `
 
 const Cancle = styled.button`
     border: none;
     background-color: transparent;
-    font-size: 20px;
+    font-size: 18px;
     height: 40px;
-    padding: 15px;
-    border: 1px solid blue;
+    padding: 8px 15px;
+    margin: 12px 0 0 15px;
     box-sizing: border-box;
+    cursor: pointer;
+    background-color: #dbdbdb;
+    border-radius: 5px;
 `
 const Add = styled.button`
     border: none;
     color: #fff;
     font-weight: bold;
     background-color: rgb(18, 184, 134);
-    font-size: 20px;
+    font-size: 18px;
     height: 40px;
-    padding: 15px;
+    padding: 8px 15px;
+    margin: 12px 15px 0 0;
+    cursor: pointer;
+    border-radius: 5px;
 `
 
 export default Postadd;

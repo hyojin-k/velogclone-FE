@@ -17,17 +17,13 @@ const deletePost = createAction(DELETE_POST, (postingId) =>({postingId}));
 
 // initialState
 const initialState = {
-    list:[
-        // {id:4,
-        // title:' dddd',
-        // content: 'ddddd'}
-    ]
+    list:[]
 }
 
 
 // middleware
 const getPostAX = () =>{
-    return (dispatch) =>{
+    return function (dispatch, getState, { history }) {
         apis
             .getPost()
             .then((res) =>{
@@ -41,6 +37,13 @@ const getPostAX = () =>{
             })
     }
 }
+
+const addPostAX = (_post) =>{
+    return function (dispatch, getState, { history }) {
+        console.log(_post)
+    }
+}
+
 
 // reducer
 export default handleActions(
@@ -62,7 +65,8 @@ const actionCreators={
     addPost,
     updatePost,
     deletePost,
-    getPostAX
+    getPostAX,
+    addPostAX
 }
 
 export {actionCreators};
