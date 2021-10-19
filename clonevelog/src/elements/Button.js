@@ -15,6 +15,7 @@ const Button = (props) => {
     children,
     isShadow,
     _onMouseOver,
+    bold,
   } = props;
 
   const styles = {
@@ -28,6 +29,7 @@ const Button = (props) => {
     isFloat: isFloat,
     isShadow: isShadow,
     _onMouseOver: _onMouseOver,
+    bold: bold,
   };
 
   return (
@@ -46,7 +48,8 @@ Button.defaultProps = {
   borderRadius: "",
   size: "",
   color: "black",
-  backgroundColor: "#90EE90",
+  bold: false,
+  backgroundColor: "rgb(18, 184, 134)",
   isFloat: "",
   children: null,
   _onClick: () => {},
@@ -63,6 +66,7 @@ const ElButton = styled.button`
   border-radius: ${(props) => props.borderRadius};
   font-size: ${(props) => props.size};
   color: ${(props) => props.color};
+  font-weight: ${(props) => (props.bold ? "600" : "400")};
   background-color: ${(props) => props.backgroundColor};
   cursor: pointer;
   ${(props) =>

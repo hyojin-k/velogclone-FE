@@ -6,26 +6,39 @@ import Button from "../elements/Button";
 
 import velog from "../static/velog.png";
 import styled from "styled-components";
+import Signin from "../pages/Signin";
+// import Signup from "../pages/Signup";
 
-// import Modal from "react-modal";
+import Modal from "react-modal";
 
 const Header = () => {
-  //   const [modalIsOpen, setModalIsOpen] = React.useState(false);
-  //   const openModal = () => {
-  //     setModalIsOpen(true);
-  //   };
-  //   const closeModal = () => {
-  //     setModalIsOpen(false);
-  //   };
-  //   const onClickModal = () => {
-  //     setIsLoginMode(!isLoginMode);
-  //   };
+  const [isLogin, setIsLogin] = React.useState();
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+    console.log("Modal창 열린다");
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+  const onClickModal = () => {
+    // setIsLoginMode(!isLoginMode);
+  };
   return (
     <React.Fragment>
       <Grid>
         <Grid isFlex padding="16px">
           <VelogImg src={velog} />
-          <Button _onClick={() => {}}>로그인</Button>
+          <Button padding="12px" _onClick={openModal}>
+            로그인
+          </Button>
+          <Modal isOpen={modalOpen} close={closeModal} style={ModalStyle}>
+            <Signin onClickModal={onClickModal} />
+            <CloseButton
+              src="https://image.flaticon.com/icons/png/512/458/458595.png"
+              onClick={closeModal}
+            ></CloseButton>
+          </Modal>
         </Grid>
       </Grid>
     </React.Fragment>
@@ -51,7 +64,14 @@ const ModalStyle = {
     margin: "auto",
     border: "none",
     boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
+    padding: "0px",
   },
 };
 
+const CloseButton = styled.img`
+  width: 20px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+`;
 export default Header;
