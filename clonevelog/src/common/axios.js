@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const instance = axios.create({
+    // baseURL:'http://54.180.148.132',
+
     baseURL: 'http://localhost:4000',
+
     headers: {
         'content-type': 'application/json;charset=UTF-8',
         accept: 'application/json',
@@ -10,11 +13,11 @@ const instance = axios.create({
 
 export const apis = {
     // 게시물 불러오기
-    getPost: () => instance.get('/posts'),
+    getPostAX: () => instance.get('/posting'),
     // 게시물 작성하기
-    createPost: (contents) => instance.post('/posts', contents),
+    createPostAX: (post) => instance.post('/posting', post),
     // 게시물 수정하기
-    editPost: (id, title, content) => instance.put(`posts/${id}`, {title, content}),
+    editPostAX: (id, title, content) => instance.put(`/posting/${id}`, {title, content}),
     // 게시물 삭제하기
-    delPost: (id) => instance.delete(`posts/${id}`),
+    delPostAX: (id) => instance.delete(`/posting/${id}`),
 }

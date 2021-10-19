@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 
+import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
-import { actionCreators } from '../redux/modules/post';
+import { actionCreators as postActions } from '../redux/modules/post';
 
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
@@ -22,15 +23,29 @@ const Postadd = (props) =>{
     // }
 
     const dispatch = useDispatch();
-
+    const editorRef = useRef();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
     const changeTitle = (e) =>{
         setTitle(e.target.value);
     }
-    const changeContent = (e) =>{
-        setContent(e.target.value);
+    // const changeContent = (e) =>{
+    //     setContent(e.target.value);
+    // }
+
+    const canclePost = () =>{
+        history.goBack();
+    }
+    const addPost = () =>{
+        const contentHTML = editorRef.current.getInstance().getHTML();
+        const contentMarkdown = editorRef.current.getInstance().getMarkdown();
+        const post = {
+            title:title,
+            content: contentMarkdown.replaceAll('#', ''),
+        }
+        dispatch(postActions.addPostMW(post));
+        history.push('/');
     }
 
     return(
@@ -46,8 +61,8 @@ const Postadd = (props) =>{
                     usageStatistics={false}
                     previewStyle='vertical'
                     height='80vh'
-                    // ref={editorRef}
-                    onChange={changeContent}
+                    ref={editorRef}
+                    // onChange={changeContent}
                 />
             </MDWrap>
             <BtnWrap>
@@ -55,11 +70,13 @@ const Postadd = (props) =>{
                     variant='primary'
                     type='submit'
                     className='submitBtn'
+                    onClick={canclePost}
                 >나가기</Cancle>
-                <Add
+                <Add 
                     variant='primary'
                     type='submit'
                     className='submitBtn'
+                    onClick={addPost}
                 >출간하기</Add>
             </BtnWrap>
         </React.Fragment>

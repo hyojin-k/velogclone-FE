@@ -85,7 +85,7 @@ const H1 = styled.h1`
   font-weight: 800;
   color: rgb(52, 58, 64);
   margin-bottom: 2rem;
-  word-break: keep-all;
+  word-break: break-all;
 `;
 
 const NickDateLike = styled.div`
@@ -162,7 +162,7 @@ const Tag = styled.div`
 `;
 
 const SubTitle = styled.div`
-	max-width : 768px
+	max-width : 768px;
 	padding: 1rem;
 	margin-top: 2rem;
 	background: rgb(248, 249, 250);

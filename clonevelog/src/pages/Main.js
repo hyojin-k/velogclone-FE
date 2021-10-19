@@ -5,7 +5,7 @@ import Post from "../components/Post";
 
 import { history } from '../redux/configureStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators } from '../redux/modules/post'
+import { actionCreators as postActions } from '../redux/modules/post'
 
 
 const Main = (props) => {
@@ -15,7 +15,7 @@ const Main = (props) => {
   console.log(post_list)
 
   useEffect(() =>{
-    dispatch(actionCreators.getPostAX());
+    dispatch(postActions.getPostMW());
   },[])
 
   return (
@@ -32,8 +32,8 @@ const Main = (props) => {
 };
 
 const Recent = styled.div`
-  max-width: 1728px;
-  font-size: 20px;
+  max-width: 1024px;
+  font-size: 18px;
   color: rgb(134, 142, 150);
   margin: 20px auto;
 `
@@ -43,7 +43,7 @@ const PostList = styled.div`
   flex-wrap: wrap;
   gap: auto;
   /* justify-content: space-around; */
-  max-width: 1728px;
+  max-width: 1024px;
   margin: 0 auto;
   border: 1px solid green; 
   box-sizing: border-box;
