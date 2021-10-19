@@ -1,3 +1,4 @@
+
 import React from 'react';
 import '../App.css';
 import { Route } from 'react-router-dom';
@@ -7,6 +8,7 @@ import { history } from '../redux/configureStore';
 //pages
 import Signin from '../pages/Signin';
 import Main from '../pages/Main';
+import Detail from '../pages/Detail';
 import Postadd from '../pages/Postadd';
 import Mypostlist from '../components/Mypostlist';
 
@@ -19,6 +21,7 @@ function App() {
         <Route path="/" exact component={Main} />
         <Route path="/write" exact component={Postadd} />
         <Route path="/mypage" exact component={Mypostlist} />
+
       </ConnectedRouter>
     </React.Fragment>
   );
