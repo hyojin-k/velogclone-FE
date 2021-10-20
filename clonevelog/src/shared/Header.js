@@ -1,28 +1,31 @@
 import React from "react";
 
 import Grid from "../elements/Grid";
-import Text from "../elements/Text";
 import Button from "../elements/Button";
 
 import velog from "../static/velog.png";
 import styled from "styled-components";
 import Signin from "../pages/Signin";
-// import Signup from "../pages/Signup";
+import Signup from "../pages/Signup";
 
 import Modal from "react-modal";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const [isLogin, setIsLogin] = React.useState();
+  const isLogin = useSelector((state) => state.user.is_login);
+  console.log(isLogin);
+  const [LoginMode, setLoginMode] = React.useState(true);
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
     setModalOpen(true);
-    console.log("Modal창 열린다");
+    console.log("modal창 열린다!");
   };
   const closeModal = () => {
     setModalOpen(false);
+    console.log("modal창 닫힌다!");
   };
   const onClickModal = () => {
-    // setIsLoginMode(!isLoginMode);
+    setLoginMode(!LoginMode);
   };
   return (
     <React.Fragment>
@@ -33,7 +36,12 @@ const Header = () => {
             로그인
           </Button>
           <Modal isOpen={modalOpen} close={closeModal} style={ModalStyle}>
-            <Signin onClickModal={onClickModal} />
+            {LoginMode ? (
+              <Signin onClickModal={onClickModal} />
+            ) : (
+              <Signup onClickModal={onClickModal} />
+            )}
+
             <CloseButton
               src="https://image.flaticon.com/icons/png/512/458/458595.png"
               onClick={closeModal}

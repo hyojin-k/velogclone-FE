@@ -1,18 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
+import { useDispatch } from "react-redux";
+
 import Text from "../elements/Text";
 import Grid from "../elements/Grid";
 import Button from "../elements/Button";
 import Input from "../elements/Input";
+import { emailCheck } from "../shared/common";
+
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Signup = (props) => {
+  const dispatch = useDispatch();
   const [userId, setUserId] = React.useState();
   const [userName, setUserName] = React.useState();
   const [password, setPassword] = React.useState();
   const [passwordCheck, setPasswordCheck] = React.useState();
 
-  // const { onClickModal } = props;
+  const { onClickModal } = props;
 
   const onChangeEmail = (e) => {
     setUserId(e.target.value);
@@ -27,6 +33,25 @@ const Signup = (props) => {
     setPasswordCheck(e.target.value);
   };
   const onClickLogin = () => {
+    if (password !== passwordCheck) {
+      window.alert("비밀번호와 비밀번호확인이 일치 하지 않습니다.");
+      return;
+    }
+    if (
+      userId === "" ||
+      userName === "" ||
+      password === "" ||
+      passwordCheck === ""
+    ) {
+      window.alert("입력해주세요");
+      return;
+    }
+    if (!emailCheck(userId)) {
+      window.alert("잘못된 이메일 형식입니다.");
+      return;
+    }
+
+    dispatch(userActions.SignUpDB(userId, password, userName));
     console.log("가입됐다!");
   };
 
@@ -51,7 +76,7 @@ const Signup = (props) => {
               회원가입
             </Text>
             <Text margin="5px 0px" size="14px" align="left">
-              이메일로 로그인
+              이메일 입력
             </Text>
             <Input
               padding="12px 0px"
@@ -62,7 +87,7 @@ const Signup = (props) => {
             />
 
             <Text margin="5px 0px" size="14px" align="left">
-              닉네임
+              닉네임 입력
             </Text>
             <Input
               padding="12px 0px"
@@ -73,7 +98,7 @@ const Signup = (props) => {
             />
 
             <Text margin="5px 0px" size="14px" align="left">
-              비밀번호
+              비밀번호 입력
             </Text>
             <Input
               padding="12px 0px"
@@ -108,8 +133,8 @@ const Signup = (props) => {
           </Grid>
 
           <Grid flexEnd>
-            <Text>아직 회원이 아니신가요?</Text>
-            <TextBtn onClick={() => {}}>회원가입</TextBtn>
+            <Text>계정이 이미 있으신가요?</Text>
+            <TextBtn onClick={onClickModal}>회원가입</TextBtn>
           </Grid>
         </Grid>
       </Grid>

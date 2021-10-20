@@ -4,20 +4,37 @@ import Grid from "../elements/Grid";
 import Input from "../elements/Input";
 import Text from "../elements/Text";
 import Button from "../elements/Button";
+import { emailCheck } from "../shared/common";
+
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Signin = (props) => {
-  const [userEmail, setUserEmail] = React.useState();
-  const [userPw, setUserPw] = React.useState();
+  const [userId, setUserId] = React.useState();
+  const [password, setPassword] = React.useState();
+  const dispatch = useDispatch();
+  const { onClickModal } = props;
 
-  const onChangeEmail = (e) => {
-    setUserEmail(e.target.value);
+  const onChangeId = (e) => {
+    setUserId(e.target.value);
     console.log("이메일입력");
   };
   const onChangePw = (e) => {
-    setUserPw(e.target.value);
+    setPassword(e.target.value);
     console.log("비밀번호입력");
   };
-  const onClickLogin = () => {};
+  const onClickLogin = () => {
+    if ((userId === "") | (password === "")) {
+      window.alert("이메일 또는 비밀번호를 입력해주세요.");
+      return;
+    }
+    if (!emailCheck(userId)) {
+      window.alert("잘못된 이메일 형식입니다.");
+      return;
+    }
+    dispatch(userActions.LoginDB(userId, password));
+    console.log("로그인했습니다!");
+  };
 
   return (
     <React.Fragment>
@@ -45,9 +62,9 @@ const Signin = (props) => {
             <Input
               padding="12px 0px"
               margin="0px 12px 12px 0px"
-              value={userEmail}
+              value={userId}
               placeholder="메일을 입력해주세요"
-              _onChange={onChangeEmail}
+              _onChange={onChangeId}
             />
             <Text margin="5px 0px" size="14px" align="left">
               비밀번호
@@ -56,7 +73,7 @@ const Signin = (props) => {
               padding="12px 0px"
               margin="0px 12px 12px 0px"
               placeholder="비밀번호를 입력해주세요"
-              value={userPw}
+              value={password}
               type="password"
               _onChange={onChangePw}
             />
@@ -74,7 +91,7 @@ const Signin = (props) => {
 
           <Grid flexEnd>
             <Text>아직 회원이 아니신가요?</Text>
-            <TextBtn>회원가입</TextBtn>
+            <TextBtn onClick={onClickModal}>회원가입</TextBtn>
           </Grid>
         </Grid>
       </Grid>
