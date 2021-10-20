@@ -20,6 +20,10 @@
     "immer": "^9.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
+=======
+    "react-icons": "^4.3.1",
+>>>>>>> 340799e97e20fb10e6cc6a001812366e3394f7a2
     "react-markdown": "^7.0.1",
     "react-modal": "^3.14.3",
     "react-redux": "^7.2.5",

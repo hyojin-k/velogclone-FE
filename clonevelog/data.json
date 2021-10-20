@@ -1,40 +1,64 @@
 {
   "posting": [
     {
+      "id": 1,
       "postingId": 1,
       "title": "1234",
       "content": "1234",
-      "thumbNail" : null,
-      "dayBefore" : "2021-10-20 10:00:00",
-      "commentCnt" : "2개",
+      "thumbNail": null,
+      "dayBefore": "2021-10-20",
+      "commentCnt": 1,
       "userName": "abc"
     },
     {
+      "id": 2,
       "postingId": 2,
       "title": "1234",
       "content": "1234",
-      "thumbNail" : null,
-      "dayBefore" : "2021-10-20 10:00:00",
-      "commentCnt" : "2개",
+      "thumbNail": null,
+      "dayBefore": "2021-10-20",
+      "commentCnt": 2,
       "userName": "abc"
     },
     {
+      "id": 3,
       "postingId": 3,
       "title": "1234",
       "content": "1234",
-      "thumbNail" : null,
-      "dayBefore" : "2021-10-20 10:00:00",
-      "commentCnt" : "2개",
+      "thumbNail": null,
+      "dayBefore": "2021-10-20",
+      "commentCnt": 2,
       "userName": "abc"
     },
     {
+      "id": 4,
       "postingId": 4,
       "title": "1234",
       "content": "1234",
-      "thumbNail" : null,
-      "dayBefore" : "2021-10-20 10:00:00",
-      "commentCnt" : "2개",
+      "thumbNail": null,
+      "dayBefore": "2021-10-20",
+      "commentCnt": 3,
       "userName": "abc"
+    },
+    {
+      "title": "aaaa",
+      "content": "aaaa",
+      "id": 5
+    },
+    {
+      "title": "sssdsdsd",
+      "content": " dddd\n dd\n\n** ddd ***",
+      "id": 6
+    },
+    {
+      "title": "zzz",
+      "content": "zzzz",
+      "id": 7
+    },
+    {
+      "title": "ggg",
+      "content": "gggg",
+      "id": 8
     }
   ]
 }

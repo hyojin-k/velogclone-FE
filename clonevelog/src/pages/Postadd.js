@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import { MdOutlineArrowBack } from 'react-icons/md';
 
 import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
@@ -71,7 +72,9 @@ const Postadd = (props) =>{
                     type='submit'
                     className='submitBtn'
                     onClick={canclePost}
-                >나가기</Cancle>
+                >
+                    <MdOutlineArrowBack style={{marginRight: '10px'}}/>
+                    나가기</Cancle>
                 <Add 
                     variant='primary'
                     type='submit'
@@ -89,19 +92,23 @@ const MDWrap = styled.div`
 `;
 
 const Title = styled.textarea`
-  width: 100%;
-  height: 130px;
-  resize: none;
-  scrollbar-width: none;
-  font-size: 48px;
-  font-weight: bold;
-  border: none;
-  padding: 40px;
-  box-sizing: border-box;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
+    width: 100%;
+    height: 130px;
+    resize: none;
+    scrollbar-width: none;
+    font-size: 48px;
+    font-weight: bold;
+    border: none;
+    padding: 40px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", 나눔고딕, "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, 돋움, Dotum, Tahoma, Geneva, sans-serif;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    &::placeholder {
+        color: lightgray;
+    }
+`
 
 const BtnWrap = styled.div`
   display: flex;
@@ -116,28 +123,33 @@ const BtnWrap = styled.div`
 `;
 
 const Cancle = styled.button`
-  border: none;
-  background-color: transparent;
-  font-size: 18px;
-  height: 40px;
-  padding: 8px 15px;
-  margin: 12px 0 0 15px;
-  box-sizing: border-box;
-  cursor: pointer;
-  background-color: #dbdbdb;
-  border-radius: 5px;
-`;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    height: 40px;
+    padding: 8px 15px;
+    margin: 12px 0 0 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 5px;
+    &:hover{
+        background-color: #e6e6e6;
+    }
+`
 const Add = styled.button`
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  background-color: rgb(18, 184, 134);
-  font-size: 18px;
-  height: 40px;
-  padding: 8px 15px;
-  margin: 12px 15px 0 0;
-  cursor: pointer;
-  border-radius: 5px;
-`;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: rgb(18, 184, 134);
+    font-size: 18px;
+    height: 40px;
+    padding: 8px 20px;
+    margin: 12px 15px 0 0;
+    cursor: pointer;
+    border-radius: 5px;
+    &:hover{
+        background-color: rgb(18, 194, 124);
+    }
+`
 
 export default Postadd;

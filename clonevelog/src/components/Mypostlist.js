@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 
 import Header from '../shared/Header';
 import Mypost from './Mypost';
 
+import {useDispatch, useSelector} from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
+
+
 const Mypostlist = (props) =>{
+    const dispatch = useDispatch();
+
+    const my_post_list = useSelector(state => state);
+    console.log(my_post_list);
+
+    useEffect(()=>{
+        // dispatch(postActions.getMyPostMW(userName))
+    })
+
     return (
         <React.Fragment>
             <Header />

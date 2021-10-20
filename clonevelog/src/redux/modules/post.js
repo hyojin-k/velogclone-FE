@@ -5,18 +5,17 @@ import { apis } from '../../common/axios';
 
 // action
 const SET_POST = 'SET_POST';
+const SET_MY_POST = 'SET_MY_POST';
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST = 'UPDATE_POST';
 const DELETE_POST = 'DELETE_POST';
 
 // action creators
-const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
-const addPost = createAction(ADD_POST, (post) => ({ post }));
-const updatePost = createAction(UPDATE_POST, (postingId, post) => ({
-  postingId,
-  post,
-}));
-const deletePost = createAction(DELETE_POST, (postingId) => ({ postingId }));
+const setPost = createAction(SET_POST, (post_list) =>({post_list}));
+const setMYPOST = createAction(SET_MY_POST, my_post_list =>({my_post_list}))
+const addPost = createAction(ADD_POST, (post) => ({post}));
+const updatePost = createAction(UPDATE_POST,(postingId, post) => ({postingId, post}))
+const deletePost = createAction(DELETE_POST, (postingId) =>({postingId}));
 
 // initialState
 const initialState = {
@@ -37,6 +36,12 @@ const getPostMW = () =>{
             .catch((err) =>{
                 console.error(err);
             })
+    }
+}
+
+const getMyPostMW = (userName) =>{
+    return function (dispatch, getState, {history}){
+        console.log(userName)
     }
 }
 
@@ -84,6 +89,7 @@ const actionCreators={
     updatePost,
     deletePost,
     getPostMW,
+    getMyPostMW,
     addPostMW
 }
 
