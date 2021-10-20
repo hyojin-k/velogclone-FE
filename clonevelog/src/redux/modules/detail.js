@@ -25,6 +25,19 @@ const initialState = {
 };
 
 //미들웨어
+const detailDB = () => {
+  return function (dispatch, getState, { history }) {
+    apis
+      .get(`http://54.180.148.132/api/posting/3`)
+      .then((res) => {
+        console.log('then getcomment 진입 되었나?', res.data.result);
+        dispatch(getDetail(res.data.result));
+      })
+      .catch((error) => {
+        console.error(error.response.data.message);
+      });
+  };
+};
 
 export default handleActions(
   {
