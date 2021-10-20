@@ -6,6 +6,8 @@ import Text from "../elements/Text";
 import Button from "../elements/Button";
 import { emailCheck } from "../shared/common";
 
+import { history } from "../redux/configureStore";
+
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 

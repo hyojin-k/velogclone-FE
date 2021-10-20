@@ -1,16 +1,24 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { setCookie, getCookie, delteCookie } from "../../shared/Cookie";
+import {
+  setCookie,
+  getCookie,
+  delteCookie,
+  deleteCookie,
+} from "../../shared/Cookie";
 
 import { apis } from "../../common/axios";
 
 //actions
 const SET_USER = "SET_USER";
-const LOG_IN = "LOG_IN";
+const GET_USER = "GET_USER";
+const LOG_OUT = "LOG_OUT";
 
 //action creators
 const setUser = createAction(SET_USER, (user) => ({ user }));
-const logIn = createAction(LOG_IN, (user) => ({ user }));
+const getUser = createAction(GET_USER, (user) => ({ user }));
+const logOut = createAction(LOG_OUT, () => ({}));
+
 //initialState
 const initialState = {
   user: null,
@@ -24,7 +32,7 @@ const SignUpDB = (userId, password, userName) => {
       .signup(userId, password, userName)
       .then((res) => {
         window.alert("회원가입을 성공하였습니다.");
-        history.replace("/");
+        history.push("/");
       })
       .catch((err) => {
         console.error(err.response.data);
@@ -34,18 +42,14 @@ const SignUpDB = (userId, password, userName) => {
 };
 
 const LoginDB = (userId, password) => {
-  return function (dispatch, getState, { history }) {
+  return (dispatch, getState, { history }) => {
     apis
       .signin(userId, password)
       .then((res) => {
-        console.log(res);
-        dispatch(
-          setUser({
-            userId: userId,
-            password: password,
-          })
-        );
-        setCookie("token", res.data.token);
+        console.log(res.data);
+        setCookie("is_login", res.data.token);
+        localStorage.setItem("userId", userId);
+        dispatch(setUser({ userId: userId }));
         history.push("/");
       })
       .catch((err) => {
@@ -55,17 +59,45 @@ const LoginDB = (userId, password) => {
   };
 };
 
+const LogOutDB = () => {
+  return function (dispatch, getState, { history }) {
+    deleteCookie("is_login");
+    localStorage.removeItem("userId");
+    dispatch(logOut());
+    window.alert("로그아웃 했습니다.");
+    history.push("/");
+  };
+};
+
+const LoginCheckDB = () => {
+  return function (dispatch, getState, { history }) {
+    const tokenCheck = document.cookie;
+    if (tokenCheck) {
+      const userId = localStorage.getItem("userId");
+      dispatch(setUser({ userId: userId }));
+    } else {
+      dispatch(logOut());
+    }
+  };
+};
+
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
-      produce((state, draft) => {
+      produce(state, (draft) => {
         draft.user = action.payload.user;
-        draft.is_login = action.payload.is_login;
-        console.log(action.payload);
+        draft.is_login = true;
       }),
-    [LOG_IN]: (state, action) =>
-      produce((state, draft) => {
+
+    [LOG_OUT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.user = null;
+        draft.is_login = false;
+      }),
+    [GET_USER]: (state, action) =>
+      produce(state, (draft) => {
         draft.user = action.payload.user;
+        draft.is_login = true;
       }),
   },
   initialState
@@ -73,7 +105,12 @@ export default handleActions(
 
 const actionCreators = {
   SignUpDB,
+  setUser,
   LoginDB,
+  getUser,
+  LogOutDB,
+  logOut,
+  LoginCheckDB,
 };
 
 export { actionCreators };

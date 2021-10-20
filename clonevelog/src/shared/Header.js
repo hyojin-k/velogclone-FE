@@ -9,12 +9,14 @@ import Signin from "../pages/Signin";
 import Signup from "../pages/Signup";
 
 import Modal from "react-modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Header = () => {
   const isLogin = useSelector((state) => state.user.is_login);
-  console.log(isLogin);
+  console.log("로그인", isLogin);
+  const dispatch = useDispatch();
   const [LoginMode, setLoginMode] = React.useState(true);
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
@@ -28,41 +30,59 @@ const Header = () => {
   const onClickModal = () => {
     setLoginMode(!LoginMode);
   };
+  const onClickLogOut = () => {
+    dispatch(userActions.LogOutDB());
+  };
   return (
     <React.Fragment>
-      <Grid >
-        <Grid isFlex padding="16px" maxWidth='1024px' margin='0 auto'  height='64px'>
-          <Button
-            backgroundColor="transparent"
-            _onClick={() => {
+      <Grid>
+        <Grid isFlex padding="16px" maxWidth="1024px" margin="0 auto">
+          <VelogImg
+            src={velog}
+            onClick={() => {
               history.push("/");
             }}
-          >
-            <VelogImg src={velog} />
-          </Button>
-          <Button
-            bold
-            size='16px'
-            color='#fff'
-            backgroundColor='rgb(52, 58, 64)'
-            padding = '6px 18px'
-            // margin= '-20px'
-            borderRadius = '20px'
-            _onClick={openModal}>
-            로그인
-          </Button>
-          <Modal isOpen={modalOpen} close={closeModal} style={ModalStyle}>
-            {LoginMode ? (
-              <Signin onClickModal={onClickModal} />
-            ) : (
-              <Signup onClickModal={onClickModal} />
-            )}
+          />
 
-            <CloseButton
-              src="https://image.flaticon.com/icons/png/512/458/458595.png"
-              onClick={closeModal}
-            ></CloseButton>
-          </Modal>
+          {isLogin ? (
+            <Button
+              bold
+              size="16px"
+              color="#fff"
+              backgroundColor="rgb(52, 58, 64)"
+              padding="6px 18px"
+              borderRadius="20px"
+              _onClick={onClickLogOut}
+            >
+              로그아웃
+            </Button>
+          ) : (
+            <Grid>
+              <Button
+                bold
+                size="16px"
+                color="#fff"
+                backgroundColor="rgb(52, 58, 64)"
+                padding="6px 18px"
+                borderRadius="20px"
+                _onClick={openModal}
+              >
+                로그인
+              </Button>
+              <Modal isOpen={modalOpen} close={closeModal} style={ModalStyle}>
+                {LoginMode ? (
+                  <Signin onClickModal={onClickModal} />
+                ) : (
+                  <Signup onClickModal={onClickModal} />
+                )}
+
+                <CloseButton
+                  src="https://image.flaticon.com/icons/png/512/458/458595.png"
+                  onClick={closeModal}
+                ></CloseButton>
+              </Modal>
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </React.Fragment>
