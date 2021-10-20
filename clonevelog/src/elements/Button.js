@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Button = (props) => {
   const {
@@ -42,15 +42,15 @@ const Button = (props) => {
 };
 
 Button.defaultProps = {
-  width: "100px",
-  margin: "",
-  padding: "5px",
-  borderRadius: "",
-  size: "",
-  color: "black",
+  width: '100px',
+  margin: '',
+  padding: '5px',
+  borderRadius: '',
+  size: '',
+  color: 'black',
   bold: false,
-  backgroundColor: "rgb(18, 184, 134)",
-  isFloat: "",
+  backgroundColor: 'rgb(18, 184, 134)',
+  isFloat: '',
   children: null,
   _onClick: () => {},
   isShadow: false,
@@ -66,13 +66,13 @@ const ElButton = styled.button`
   border-radius: ${(props) => props.borderRadius};
   font-size: ${(props) => props.size};
   color: ${(props) => props.color};
-  font-weight: ${(props) => (props.bold ? "600" : "400")};
+  font-weight: ${(props) => (props.bold ? '600' : '400')};
   background-color: ${(props) => props.backgroundColor};
   cursor: pointer;
   ${(props) =>
     props.isShadow
       ? `box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.12);`
-      : ""}
+      : ''}
 `;
 
 export default Button;

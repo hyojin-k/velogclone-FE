@@ -1,20 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { actionCreators as commentAction } from '../../redux/modules/comment';
+import { useParams } from 'react-router';
 
 const GetPostComment = (props) => {
+  const id = useParams().id;
+  console.log(id);
+
   const dispatch = useDispatch();
+  // // usestate
+  const [comment, setComment] = React.useState('');
+  console.log(comment);
+  // 코멘트 삽입
+  const _onChange = (e) => {
+    setComment(e.target.value);
+  };
+  const _onClick = () => {
+    dispatch(commentAction.addCommentDB(id, comment));
+  };
 
   return (
     <React.Fragment>
       <TextBox>
         <CountComment>n개의 댓글</CountComment>
         <TextArea>
-          <TextAreaDetail placeholder="댓글을 작성해 주세요"></TextAreaDetail>
+          <TextAreaDetail
+            onChange={_onChange}
+            placeholder="댓글을 작성해 주세요"
+          ></TextAreaDetail>
           <ButtonWrap>
-            <Button color="teal" class="sc-dnqmqq gzELJz">
+            <InputButton
+              onClick={_onClick}
+              color="teal"
+              class="sc-dnqmqq gzELJz"
+            >
               댓글 작성
-            </Button>
+            </InputButton>
           </ButtonWrap>
         </TextArea>
       </TextBox>
@@ -90,7 +112,7 @@ const ButtonWrap = styled.div`
   justify-content: flex-end;
 `;
 
-const Button = styled.button`
+const InputButton = styled.button`
   display: inline-flex;
   -webkit-box-align: center;
   align-items: center;
@@ -106,6 +128,7 @@ const Button = styled.button`
   padding: 0px 1.25rem;
   height: 2rem;
   font-size: 1rem;
+  _onChange = () => {},
 `;
 
 const RegistComment = styled.div`
