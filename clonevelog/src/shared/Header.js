@@ -10,6 +10,7 @@ import Signup from "../pages/Signup";
 
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
+import { history } from "../redux/configureStore";
 
 const Header = () => {
   const isLogin = useSelector((state) => state.user.is_login);
@@ -30,9 +31,24 @@ const Header = () => {
   return (
     <React.Fragment>
       <Grid>
-        <Grid isFlex padding="16px">
-          <VelogImg src={velog} />
-          <Button padding="12px" _onClick={openModal}>
+        <Grid isFlex padding="16px" maxWidth="1024px" margin="0 auto">
+          <Button
+            backgroundColor="transparent"
+            _onClick={() => {
+              history.push("/");
+            }}
+          >
+            <VelogImg src={velog} />
+          </Button>
+          <Button
+            bold
+            size="16px"
+            color="#fff"
+            backgroundColor="rgb(52, 58, 64)"
+            padding="6px 18px"
+            borderRadius="20px"
+            _onClick={openModal}
+          >
             로그인
           </Button>
           <Modal isOpen={modalOpen} close={closeModal} style={ModalStyle}>
@@ -54,7 +70,8 @@ const Header = () => {
 };
 
 const VelogImg = styled.img`
-  width: 100px;
+  width: 120px;
+  margin-left: -40px;
 `;
 const ModalStyle = {
   overlay: {

@@ -22,10 +22,10 @@ const initialState = {
 
 
 // middleware
-const getPostAX = () =>{
+const getPostMW = () =>{
     return function (dispatch, getState, { history }) {
         apis
-            .getPost()
+            .getPostAX()
             .then((res) =>{
                 const post_list = res.data;
                 console.log(post_list);
@@ -38,9 +38,19 @@ const getPostAX = () =>{
     }
 }
 
-const addPostAX = (_post) =>{
+const addPostMW = (post) =>{
     return function (dispatch, getState, { history }) {
-        console.log(_post)
+        console.log(post)
+
+        apis
+            .createPostAX(post)
+            .then((res) =>{
+                dispatch(addPost(post));
+                console.log(res);
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
     }
 }
 
@@ -53,7 +63,8 @@ export default handleActions(
             console.log(draft.list)
         }),
         [ADD_POST]: (state,action) => produce(state,(draft) =>{
-
+            draft.list.push(action.payload.post)
+            console.log(draft.list)
         })
     },
     initialState
@@ -65,8 +76,8 @@ const actionCreators={
     addPost,
     updatePost,
     deletePost,
-    getPostAX,
-    addPostAX
+    getPostMW,
+    addPostMW
 }
 
 export {actionCreators};

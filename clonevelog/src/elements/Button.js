@@ -42,7 +42,7 @@ const Button = (props) => {
 };
 
 Button.defaultProps = {
-  width: "100px",
+  width: "",
   margin: "",
   padding: "5px",
   borderRadius: "",

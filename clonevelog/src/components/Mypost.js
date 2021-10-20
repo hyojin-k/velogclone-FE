@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { history } from '../redux/configureStore';
+
 const Mypost = (props) =>{
     return (
         <React.Fragment>
@@ -9,7 +11,7 @@ const Mypost = (props) =>{
 
                 </Image>
                 <Description>
-                    <Title>
+                    <Title onClick = {()=>{history.push('detail')}}>
                         HTTP의 특성과 쿠키, 세션, 토큰
                     </Title>
                     <Text>
@@ -18,7 +20,7 @@ const Mypost = (props) =>{
                     <TagWrap>
 
                     </TagWrap>
-                    <Date>어제</Date>
+                    <Date>어제 · </Date>
                     <Comment>0개의 댓글</Comment>
                 </Description>
             </Wrap>
@@ -40,16 +42,28 @@ const Image = styled.div`
     height: 402px;
 `
 const Description = styled.div`
-    border: 1px solid green;
-    box-sizing: border-box;
     width: 100%;
 `
-const Title = styled.h2`
+const Title = styled.button`
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 12px 0 12px -8px;
+    cursor: pointer;
 `
-const Text = styled.p``
+const Text = styled.p`
+    margin: 0 0 20px 0;
+`
 const TagWrap = styled.div``
-const Date = styled.span``
-const Comment = styled.span``
+const Date = styled.span`
+  font-size: 14px;
+  color:rgb(134, 142, 150);
+`
+const Comment = styled.span`
+  font-size: 14px;
+  color:rgb(134, 142, 150);
+`
 
 
 export default Mypost;
