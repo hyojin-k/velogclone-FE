@@ -1,9 +1,9 @@
-import { createAction, handleActions } from 'redux-actions';
-import { produce } from 'immer';
-import instance from '../../common/axios';
-import axios from 'axios';
+import { createAction, handleActions } from "redux-actions";
+import { produce } from "immer";
+// import instance from '../../common/axios';
+import { apis } from "../../common/axios";
 
-const GET_DETAIL = 'GET_DETAIL';
+const GET_DETAIL = "GET_DETAIL";
 
 const getDetail = createAction(GET_DETAIL, (deatail_list) => ({
   deatail_list,
@@ -12,14 +12,14 @@ const getDetail = createAction(GET_DETAIL, (deatail_list) => ({
 const initialState = {
   list: [
     {
-      createdAt: '2021-10-19 21:16:35',
-      modifiedAt: '2021-10-19 21:16:35',
+      createdAt: "2021-10-19 21:16:35",
+      modifiedAt: "2021-10-19 21:16:35",
       postingId: 4,
-      userName: 'bbb',
-      title: '제목2',
-      content: '내용',
-      contentTag: '테스트',
-      imageFile: '/images/basic.jpg',
+      userName: "bbb",
+      title: "제목2",
+      content: "내용",
+      contentTag: "테스트",
+      imageFile: "/images/basic.jpg",
     },
   ],
 };
@@ -30,7 +30,7 @@ const detailDB = () => {
     apis
       .get(`http://54.180.148.132/api/posting/3`)
       .then((res) => {
-        console.log('then getcomment 진입 되었나?', res.data.result);
+        console.log("then getcomment 진입 되었나?", res.data.result);
         dispatch(getDetail(res.data.result));
       })
       .catch((error) => {

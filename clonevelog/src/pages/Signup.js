@@ -128,13 +128,13 @@ const Signup = (props) => {
               width="100%"
               _onClick={onClickLogin}
             >
-              로그인
+              회원가입
             </Button>
           </Grid>
 
           <Grid flexEnd>
             <Text>계정이 이미 있으신가요?</Text>
-            <TextBtn onClick={onClickModal}>회원가입</TextBtn>
+            <TextBtn onClick={onClickModal}>로그인</TextBtn>
           </Grid>
         </Grid>
       </Grid>
