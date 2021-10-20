@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
-import instance from '../../common/axios';
+import { apis } from '../../common/axios';
 import axios from 'axios';
 
 const GET_DETAIL = 'GET_DETAIL';
@@ -28,13 +28,15 @@ const initialState = {
 const detailDB = () => {
   return function (dispatch, getState, { history }) {
     apis
-      .get(`http://54.180.148.132/api/posting/3`)
+      .getPostAX()
       .then((res) => {
-        console.log('then getcomment 진입 되었나?', res.data.result);
-        dispatch(getDetail(res.data.result));
+        const detail_list = res.data;
+        console.log('거 detail_list 들어오는가?', detail_list);
+        dispatch(getDetail(detail_list));
+        console.log('리덕스 저장 완료');
       })
-      .catch((error) => {
-        console.error(error.response.data.message);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
@@ -51,6 +53,7 @@ export default handleActions(
 
 const actionCreators = {
   getDetail,
+  detailDB,
 };
 
 export { actionCreators };

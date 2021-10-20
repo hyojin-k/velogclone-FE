@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
-import apis from 'axios';
+import { apis } from '../../common/axios';
 import axios from 'axios';
 
 const ADD_COMMENT = 'ADD_COMMENT';
@@ -30,7 +30,7 @@ const initialState = {
 const addCommentDB = (id, comment) => {
   return function (dispatch, getState, { history }) {
     apis
-      .post(`http://54.180.148.132/api/comment/3`, { comment })
+      .post(`http://54.180.148.132/api/comment/${id}`, { comment })
       .then((res) => {
         console.log('then getcomment 진입 되었나?', res.data.result);
         dispatch(addComment(res.data.result));
@@ -38,6 +38,12 @@ const addCommentDB = (id, comment) => {
       .catch((error) => {
         console.error(error.response.data.message);
       });
+  };
+};
+
+const getCommentDB = (id) => {
+  return function (dispatch, getState, { history }) {
+    apis.get(`http://54.180.148.132/api/posting/${id}`);
   };
 };
 
