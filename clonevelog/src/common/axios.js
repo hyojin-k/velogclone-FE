@@ -14,6 +14,8 @@ const instance = axios.create({
 export const apis = {
     // 게시물 불러오기
     getPostAX: () => instance.get('/posting'),
+    // 유저 게시물 불러오기
+    getMyPostAX: (userName) => instance.get(`/mypage/${userName}`),
     // 게시물 작성하기
     createPostAX: (post) => instance.post('/posting', post),
     // 게시물 수정하기

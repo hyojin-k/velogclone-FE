@@ -27,8 +27,8 @@ const Header = () => {
   };
   return (
     <React.Fragment>
-      <Grid>
-        <Grid isFlex padding="16px" maxWidth='1024px' margin='0 auto'>
+      <Grid >
+        <Grid isFlex padding="16px" maxWidth='1024px' margin='0 auto'  height='64px'>
           <Button
             backgroundColor='transparent'
             _onClick={() =>{history.push('/')}}
@@ -41,6 +41,7 @@ const Header = () => {
             color='#fff'
             backgroundColor='rgb(52, 58, 64)'
             padding = '6px 18px'
+            // margin= '-20px'
             borderRadius = '20px'
             _onClick={openModal}>
             로그인

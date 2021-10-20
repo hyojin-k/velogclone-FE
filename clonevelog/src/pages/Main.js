@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import styled from 'styled-components';
+import {FiClock} from 'react-icons/fi';
+
 import Header from '../shared/Header';
 import Post from "../components/Post";
 
@@ -21,7 +23,10 @@ const Main = (props) => {
   return (
     <React.Fragment>
       <Header />
-      <Recent>최신</Recent>
+      <Recent>
+        <FiClock style={{width: '22px',height:'22px', margin: '0 10px', verticalAlign:'top'}}/>
+        최신
+        </Recent>
       <PostList>
         {post_list.map((p, idx) =>{
           return <Post key={idx} {...p} />
@@ -45,8 +50,8 @@ const PostList = styled.div`
   /* justify-content: space-around; */
   max-width: 1024px;
   margin: 0 auto;
-  border: 1px solid green; 
-  box-sizing: border-box;
+  /* border: 1px solid green; 
+  box-sizing: border-box; */
 `
 
 export default Main;

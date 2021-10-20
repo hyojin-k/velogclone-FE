@@ -7,9 +7,9 @@ const Mypost = (props) =>{
     return (
         <React.Fragment>
             <Wrap>
-                <Image>
-
-                </Image>
+                <ImageBtn onClick = {()=>{history.push('detail')}}>
+                    <Image></Image>
+                </ImageBtn>
                 <Description>
                     <Title onClick = {()=>{history.push('detail')}}>
                         HTTP의 특성과 쿠키, 세션, 토큰
@@ -20,7 +20,7 @@ const Mypost = (props) =>{
                     <TagWrap>
 
                     </TagWrap>
-                    <Date>어제 · </Date>
+                    <Date>어제  ·  </Date>
                     <Comment>0개의 댓글</Comment>
                 </Description>
             </Wrap>
@@ -35,7 +35,17 @@ const Wrap = styled.div`
     padding: 60px 0;
     margin: 0 auto;
 `
-const Image = styled.div`
+const ImageBtn = styled.button`
+    display: block;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+`
+const Image = styled.image`
+    display: block;
     border: 1px solid blue;
     box-sizing: border-box;
     width: 100%;
