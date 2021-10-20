@@ -1,39 +1,63 @@
 import React from "react";
 
 import Grid from "../elements/Grid";
-import Text from "../elements/Text";
 import Button from "../elements/Button";
 
 import velog from "../static/velog.png";
 import styled from "styled-components";
 import Signin from "../pages/Signin";
-// import Signup from "../pages/Signup";
+import Signup from "../pages/Signup";
 
 import Modal from "react-modal";
+import { useSelector } from "react-redux";
+import { history } from "../redux/configureStore";
 
 const Header = () => {
-  const [isLogin, setIsLogin] = React.useState();
+  const isLogin = useSelector((state) => state.user.is_login);
+  console.log(isLogin);
+  const [LoginMode, setLoginMode] = React.useState(true);
   const [modalOpen, setModalOpen] = React.useState(false);
   const openModal = () => {
     setModalOpen(true);
-    console.log("Modal창 열린다");
+    console.log("modal창 열린다!");
   };
   const closeModal = () => {
     setModalOpen(false);
+    console.log("modal창 닫힌다!");
   };
   const onClickModal = () => {
-    // setIsLoginMode(!isLoginMode);
+    setLoginMode(!LoginMode);
   };
   return (
     <React.Fragment>
       <Grid>
-        <Grid isFlex padding="16px">
-          <VelogImg src={velog} />
-          <Button padding="12px" _onClick={openModal}>
+        <Grid isFlex padding="16px" maxWidth="1024px" margin="0 auto">
+          <Button
+            backgroundColor="transparent"
+            _onClick={() => {
+              history.push("/");
+            }}
+          >
+            <VelogImg src={velog} />
+          </Button>
+          <Button
+            bold
+            size="16px"
+            color="#fff"
+            backgroundColor="rgb(52, 58, 64)"
+            padding="6px 18px"
+            borderRadius="20px"
+            _onClick={openModal}
+          >
             로그인
           </Button>
           <Modal isOpen={modalOpen} close={closeModal} style={ModalStyle}>
-            <Signin onClickModal={onClickModal} />
+            {LoginMode ? (
+              <Signin onClickModal={onClickModal} />
+            ) : (
+              <Signup onClickModal={onClickModal} />
+            )}
+
             <CloseButton
               src="https://image.flaticon.com/icons/png/512/458/458595.png"
               onClick={closeModal}
@@ -46,7 +70,8 @@ const Header = () => {
 };
 
 const VelogImg = styled.img`
-  width: 100px;
+  width: 120px;
+  margin-left: -40px;
 `;
 const ModalStyle = {
   overlay: {

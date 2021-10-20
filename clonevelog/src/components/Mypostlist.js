@@ -28,8 +28,6 @@ const UserWrap = styled.div`
     margin: 60px auto;
 `
 const PostList = styled.div`
-    border: 1px solid green;
-    box-sizing: border-box;
     max-width: 1024px;
     margin: 0 auto;
 `

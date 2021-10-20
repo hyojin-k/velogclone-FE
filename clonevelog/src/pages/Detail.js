@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+
+import Header from '../shared/Header'
 import GetTitle from '../components/Detail/GetTitle';
 import GetWrite from '../components/Detail/GetWrite';
 import MyProfile from '../components/Detail/MyProfile';
@@ -8,6 +10,7 @@ import GetPostComment from '../components/Detail/GetPostComment';
 const Detail = (props) => {
   return (
     <All>
+      <Header />
       <GetTitle />
       <GetWrite />
       <MyProfile />
@@ -18,7 +21,7 @@ const Detail = (props) => {
 
 const All = styled.div`
 margin-top: 2rem;
-  box-sizing = inherit;
+  box-sizing : inherit;
   height: 100%;
   overflow-y: initial;
   margin: 0px;
