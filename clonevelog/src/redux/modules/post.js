@@ -12,14 +12,24 @@ const DELETE_POST = 'DELETE_POST';
 
 // action creators
 const setPost = createAction(SET_POST, (post_list) =>({post_list}));
-const setMYPOST = createAction(SET_MY_POST, my_post_list =>({my_post_list}))
+const setMyPost = createAction(SET_MY_POST, my_post_list =>({my_post_list}))
 const addPost = createAction(ADD_POST, (post) => ({post}));
 const updatePost = createAction(UPDATE_POST,(postingId, post) => ({postingId, post}))
 const deletePost = createAction(DELETE_POST, (postingId) =>({postingId}));
 
 // initialState
 const initialState = {
-  list: [],
+  list: [
+      {
+          postingId: '1',
+          thumbNail:'img.jpg',
+          title:'타이틀',
+          content:'내용',
+          dayBefore: '7일 전',
+          commentCnt:'2개',
+          userNave:'hyo'
+      }
+  ],
 };
 
 // middleware
@@ -34,16 +44,27 @@ const getPostMW = () =>{
                 console.log('등록 완료')
             })
             .catch((err) =>{
-                console.error(err);
+                console.log(err);
             })
     }
 }
 
-const getMyPostMW = (userName) =>{
-    return function (dispatch, getState, {history}){
-        console.log(userName)
-    }
-}
+// const getMyPostMW = (userName) =>{
+//     return function (dispatch, getState, {history}){
+//         console.log(userName)
+
+//         apis
+//             .getMyPostAX(userName)
+//             .then(res =>{
+//                 // console.log(res)
+//                 // const my_post_list = res.data.myPostList
+//                 // dispatch(setMyPost(my_post_list))
+//             })
+//             .catch((err)=>{
+//                 console.log(err);
+//             })
+//     }
+// }
 
 const addPostMW = (post) =>{
     return function (dispatch, getState, { history }) {
@@ -61,17 +82,15 @@ const addPostMW = (post) =>{
     }
 }
 
-const addPostAX = (_post) => {
-  return function (dispatch, getState, { history }) {
-    console.log(_post);
-  };
-};
-
 // reducer
 export default handleActions(
     {
         [SET_POST]: (state,action) => produce(state, (draft)=>{
             draft.list = action.payload.post_list;
+            console.log(draft.list)
+        }),
+        [SET_MY_POST]:(state, action) => produce(state, (draft)=>{
+            draft.list = action.payload.my_post_list;
             console.log(draft.list)
         }),
         [ADD_POST]: (state,action) => produce(state,(draft) =>{
@@ -89,7 +108,7 @@ const actionCreators={
     updatePost,
     deletePost,
     getPostMW,
-    getMyPostMW,
+    // getMyPostMW,
     addPostMW
 }
 

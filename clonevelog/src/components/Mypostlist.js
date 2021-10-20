@@ -10,23 +10,31 @@ import { actionCreators as postActions } from '../redux/modules/post';
 
 const Mypostlist = (props) =>{
     const dispatch = useDispatch();
+    const userName = props.match.params.userName;
 
-    const my_post_list = useSelector(state => state);
-    console.log(my_post_list);
+    const myPostList = useSelector(state => state.post.list);
+    console.log(myPostList);
 
-    useEffect(()=>{
-        // dispatch(postActions.getMyPostMW(userName))
-    })
+    // useEffect(()=>{
+    //     dispatch(postActions.getMyPostMW(userName))
+    // },[])
 
+    if(!myPostList) {
+        return;
+    }
+    
     return (
         <React.Fragment>
             <Header />
             <UserWrap>
-                HYOJIN
+                {userName}
             </UserWrap>
             <PostList>
-                <Mypost />
-                <Mypost />
+                {/* <Mypost />
+                <Mypost /> */}
+                {myPostList.map((p, idx) =>{
+                    return <Mypost {...p} key={idx} />;
+                })}
             </PostList>
         </React.Fragment>
     )

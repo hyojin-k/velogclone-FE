@@ -41,24 +41,14 @@
       "userName": "abc"
     },
     {
-      "title": "aaaa",
-      "content": "aaaa",
+      "title": "sss",
+      "content": "sss",
       "id": 5
     },
     {
-      "title": "sssdsdsd",
-      "content": " dddd\n dd\n\n** ddd ***",
+      "title": "마크다운",
+      "content": " 마크다운\n 잘먹히니\n> 예에~~~~\n> ",
       "id": 6
-    },
-    {
-      "title": "zzz",
-      "content": "zzzz",
-      "id": 7
-    },
-    {
-      "title": "ggg",
-      "content": "gggg",
-      "id": 8
     }
   ]
 }

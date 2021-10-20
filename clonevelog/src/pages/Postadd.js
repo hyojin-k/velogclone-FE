@@ -61,6 +61,7 @@ const Postadd = (props) =>{
                     placeholder='당신의 이야기를 적어보세요...' 
                     usageStatistics={false}
                     previewStyle='vertical'
+                    previewHighlight={false}
                     height='80vh'
                     ref={editorRef}
                     // onChange={changeContent}

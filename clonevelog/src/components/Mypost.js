@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { history } from '../redux/configureStore';
 
 const Mypost = (props) =>{
+    const { postingId, thumbNail, title, content, dayBefore, commentCnt, userName } = props;
     return (
         <React.Fragment>
             <Wrap>
@@ -12,16 +13,16 @@ const Mypost = (props) =>{
                 </ImageBtn>
                 <Description>
                     <Title onClick = {()=>{history.push('detail')}}>
-                        HTTP의 특성과 쿠키, 세션, 토큰
+                        {title}
                     </Title>
                     <Text>
-                        서버는 어떻게 클라이언트를 식별할까? 쿠키, 세션, 토큰은 결국 HTTP의 특성으로부터 탄생했다.
+                        {content}
                     </Text>
                     <TagWrap>
 
                     </TagWrap>
-                    <Date>어제  ·  </Date>
-                    <Comment>0개의 댓글</Comment>
+                    <Date>{dayBefore}  ·  </Date>
+                    <Comment>{commentCnt}개의 댓글</Comment>
                 </Description>
             </Wrap>
         </React.Fragment>

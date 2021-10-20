@@ -7,6 +7,7 @@ import { history } from "../redux/configureStore";
 
 const Post = (props) => {
   const {
+    id,
     postingId, 
     thumNail,
     title,
@@ -18,10 +19,10 @@ const Post = (props) => {
   return (
     <>
       <Wrap>
-        <ImageBtn onClick = {()=>{history.push('detail')}}>
+        <ImageBtn onClick = {()=>{history.push(`detail/${id}`)}}>
           <Image></Image>
         </ImageBtn>
-        <Description onClick={()=>{history.push('detail')}}>
+        <Description onClick={()=>{history.push(`detail/${postingId}`)}}>
           <TextWrap>
             <Title>{title}</Title>
             <Text>{content}</Text>
@@ -30,7 +31,7 @@ const Post = (props) => {
           <Comment>{commentCnt}개의 댓글</Comment>
         </Description>
         <UserName>
-          by <span style={{fontWeight: 'bold'}}></span>
+          by <span style={{fontWeight: 'bold'}}>{userName}</span>
           </UserName>
       </Wrap>
     </>

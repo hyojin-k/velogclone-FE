@@ -24,7 +24,7 @@ const SignUpDB = (userId, password, userName) => {
       .signup(userId, password, userName)
       .then((res) => {
         window.alert("회원가입을 성공하였습니다.");
-        history.push("/");
+        history.replace("/");
       })
       .catch((err) => {
         console.error(err.response.data);
