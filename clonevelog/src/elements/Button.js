@@ -42,21 +42,12 @@ const Button = (props) => {
 };
 
 Button.defaultProps = {
-<<<<<<< HEAD
-  width: '100px',
-  margin: '',
-  padding: '5px',
-  borderRadius: '',
-  size: '',
-  color: 'black',
-=======
   width: "",
   margin: "",
   padding: "5px",
   borderRadius: "",
   size: "",
   color: "black",
->>>>>>> 178bed8d3f20711542c6e5513436cbf40eab7026
   bold: false,
   backgroundColor: 'rgb(18, 184, 134)',
   isFloat: '',

@@ -24,23 +24,6 @@ const initialState = {
 };
 
 // middleware
-<<<<<<< HEAD
-const getPostAX = () => {
-  return function (dispatch, getState, { history }) {
-    apis
-      .getPost()
-      .then((res) => {
-        const post_list = res.data;
-        console.log(post_list);
-        dispatch(setPost(post_list));
-        console.log('등록 완료');
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-};
-=======
 const getPostMW = () =>{
     return function (dispatch, getState, { history }) {
         apis
@@ -72,7 +55,6 @@ const addPostMW = (post) =>{
             })
     }
 }
->>>>>>> 178bed8d3f20711542c6e5513436cbf40eab7026
 
 const addPostAX = (_post) => {
   return function (dispatch, getState, { history }) {
@@ -82,28 +64,6 @@ const addPostAX = (_post) => {
 
 // reducer
 export default handleActions(
-<<<<<<< HEAD
-  {
-    [SET_POST]: (state, action) =>
-      produce(state, (draft) => {
-        draft.list = action.payload.post_list;
-        console.log(draft.list);
-      }),
-    [ADD_POST]: (state, action) => produce(state, (draft) => {}),
-  },
-  initialState
-);
-
-// export
-const actionCreators = {
-  setPost,
-  addPost,
-  updatePost,
-  deletePost,
-  getPostAX,
-  addPostAX,
-};
-=======
     {
         [SET_POST]: (state,action) => produce(state, (draft)=>{
             draft.list = action.payload.post_list;
@@ -126,6 +86,5 @@ const actionCreators={
     getPostMW,
     addPostMW
 }
->>>>>>> 178bed8d3f20711542c6e5513436cbf40eab7026
 
 export { actionCreators };

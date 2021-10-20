@@ -5,8 +5,8 @@ import { history } from '../redux/configureStore';
 import { useDispatch } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 
-// import '@toast-ui/editor/dist/toastui-editor.css';
-// import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
 
 // // import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
 // // import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
@@ -15,61 +15,12 @@ import { actionCreators as postActions } from '../redux/modules/post';
 // // import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css'
 // // import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 
-<<<<<<< HEAD
-const Postadd = (props) => {
-  // const editorRef = createRef();
+const Postadd = (props) =>{
+    // const editorRef = createRef();
 
-  // const onChangeEditorTextHandler = () =>{
-  //     console.log(editorRef.current.getInstance().getMarkdown());
-  // }
-
-  const dispatch = useDispatch();
-
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-
-  const changeTitle = (e) => {
-    setTitle(e.target.value);
-  };
-  const changeContent = (e) => {
-    setContent(e.target.value);
-  };
-
-  return (
-    <React.Fragment>
-      <MDWrap>
-        <Title
-          type="title"
-          placeholder="제목을 입력하세요"
-          onChange={changeTitle}
-        ></Title>
-        <Editor
-          placeholder="당신의 이야기를 적어보세요..."
-          usageStatistics={false}
-          previewStyle="vertical"
-          height="80vh"
-          // ref={editorRef}
-          onChange={changeContent}
-        />
-      </MDWrap>
-      <BtnWrap>
-        <Cancle variant="primary" type="submit" className="submitBtn">
-          나가기
-        </Cancle>
-        <Add variant="primary" type="submit" className="submitBtn">
-          출간하기
-        </Add>
-      </BtnWrap>
-    </React.Fragment>
-  );
-};
-=======
-// const Postadd = (props) =>{
-//     // const editorRef = createRef();
-
-//     // const onChangeEditorTextHandler = () =>{
-//     //     console.log(editorRef.current.getInstance().getMarkdown());
-//     // }
+    // const onChangeEditorTextHandler = () =>{
+    //     console.log(editorRef.current.getInstance().getMarkdown());
+    // }
 
     const dispatch = useDispatch();
     const editorRef = useRef();
@@ -131,7 +82,6 @@ const Postadd = (props) => {
         </React.Fragment>
     )
 }
->>>>>>> 178bed8d3f20711542c6e5513436cbf40eab7026
 
 const MDWrap = styled.div`
   height: calc(100%-130px);
