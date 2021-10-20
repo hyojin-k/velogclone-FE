@@ -2,7 +2,9 @@ import axios from 'axios';
 import { getCookie } from '../shared/Cookie';
 // http://54.180.148.132/api/posting
 const instance = axios.create({
-  baseURL: 'http://54.180.148.132',
+    baseURL: "http://localhost:4000",
+
+//   baseURL: 'http://54.180.148.132',
   headers: {
     'content-type': 'application/json;charset=UTF-8',
     accept: 'application/json',

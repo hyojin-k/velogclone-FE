@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import instance from '../../common/axios';
-import axios from 'axios';
+import { apis } from '../../common/axios';
 
 const GET_DETAIL = 'GET_DETAIL';
 
