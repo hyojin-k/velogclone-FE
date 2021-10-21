@@ -50,7 +50,12 @@ export const apis = {
   // 유저 게시물 불러오기
   // getMyPostAX: (userName) => instance.get(`/api/mypage/${userName}`),
   // 게시물 작성하기
-  createPostAX: (post) => instance.post("/api/posting", post),
+  createPostAX: (post) => instance.post("/api/posting", post,{
+    headers: {
+      "content-type": "application/json",
+      "X-AUTH-TOKEN": `${getCookie("token")}`,
+    },
+  }),
   // 게시물 수정하기
   editPostAX: (id, title, content) =>
     instance.put(`/api/posting/${id}`, { title, content }),

@@ -47,7 +47,7 @@ const LoginDB = (userId, password) => {
       .signin(userId, password)
       .then((res) => {
         console.log(res.data);
-        setCookie("is_login", res.data.token);
+        setCookie("token", res.data.token);
         localStorage.setItem("userId", userId);
         dispatch(setUser({ userId: userId }));
         history.push("/");

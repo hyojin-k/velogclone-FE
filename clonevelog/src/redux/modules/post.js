@@ -39,19 +39,14 @@ const getPostMW = (postingId) =>{
         apis
             .getPostAX()
             .then((res) =>{
-                const post_list = res.data;
+                const post_list = res.data.data;
                 console.log(post_list);
-                // if(postingId){
-                //     const post = post_list.filter(p =>postingId === postingId)[0];
-                //     console.log('셋포스트', postingId)
-
-                //     dispatch(setPost(post));
-                // }else {
-                    // console.log('셋포스트', postingId)
-
+                if(postingId){
+                    const post = post_list.filter(p =>postingId === postingId)[0];
+                    dispatch(setPost(post));
+                }else {
                     dispatch(setPost(post_list));
-
-                // }
+                }
                 console.log('게시물 불러오기 완료')
                 window.alert('게시물 불러오기 완료')
             })
