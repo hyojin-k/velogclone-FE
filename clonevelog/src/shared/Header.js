@@ -33,6 +33,10 @@ const Header = () => {
   const onClickLogOut = () => {
     dispatch(userActions.LogOutDB());
   };
+  const onClickWrite = () => {
+    history.push("/write");
+  };
+
   return (
     <React.Fragment>
       <Grid>
@@ -45,17 +49,32 @@ const Header = () => {
           />
 
           {isLogin ? (
-            <Button
-              bold
-              size="16px"
-              color="#fff"
-              backgroundColor="rgb(52, 58, 64)"
-              padding="6px 18px"
-              borderRadius="20px"
-              _onClick={onClickLogOut}
-            >
-              로그아웃
-            </Button>
+            <Grid width="220px" isFlex>
+              <Button
+                bold
+                size="16px"
+                border="1.5px solid rgb(52,58,64)"
+                color="rgb(52,58,64)"
+                backgroundColor="#fff"
+                padding="6px 18px"
+                borderRadius="20px"
+                _onClick={onClickWrite}
+              >
+                새 글 작성
+              </Button>
+              <Button
+                bold
+                size="16px"
+                border="1.5px solid rgb(52,58,64)"
+                color="rgb(52,58,64)"
+                backgroundColor="#fff"
+                padding="6px 18px"
+                borderRadius="20px"
+                _onClick={onClickLogOut}
+              >
+                로그아웃
+              </Button>
+            </Grid>
           ) : (
             <Grid>
               <Button

@@ -8,6 +8,7 @@ import Grid from "../elements/Grid";
 import Button from "../elements/Button";
 import Input from "../elements/Input";
 import { emailCheck } from "../shared/common";
+import { history } from "../redux/configureStore";
 
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -32,7 +33,7 @@ const Signup = (props) => {
   const onChangePwCheck = (e) => {
     setPasswordCheck(e.target.value);
   };
-  const onClickLogin = () => {
+  const onClickSignup = () => {
     if (password !== passwordCheck) {
       window.alert("비밀번호와 비밀번호확인이 일치 하지 않습니다.");
       return;
@@ -52,6 +53,7 @@ const Signup = (props) => {
     }
 
     dispatch(userActions.SignUpDB(userId, password, userName));
+    onClickModal();
     console.log("가입됐다!");
   };
 
@@ -126,7 +128,7 @@ const Signup = (props) => {
               size="15px"
               padding="14px"
               width="100%"
-              _onClick={onClickLogin}
+              _onClick={onClickSignup}
             >
               회원가입
             </Button>

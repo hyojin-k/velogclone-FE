@@ -72,6 +72,7 @@ const LogOutDB = () => {
 const LoginCheckDB = () => {
   return function (dispatch, getState, { history }) {
     const tokenCheck = document.cookie;
+    console.log(tokenCheck);
     if (tokenCheck) {
       const userId = localStorage.getItem("userId");
       dispatch(setUser({ userId: userId }));

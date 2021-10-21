@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Button = (props) => {
   const {
@@ -16,6 +16,8 @@ const Button = (props) => {
     isShadow,
     _onMouseOver,
     bold,
+    borderColor,
+    border,
   } = props;
 
   const styles = {
@@ -30,6 +32,8 @@ const Button = (props) => {
     isShadow: isShadow,
     _onMouseOver: _onMouseOver,
     bold: bold,
+    border: border,
+    borderColor: borderColor,
   };
 
   return (
@@ -49,12 +53,14 @@ Button.defaultProps = {
   size: "",
   color: "black",
   bold: false,
-  backgroundColor: 'rgb(18, 184, 134)',
-  isFloat: '',
+  backgroundColor: "rgb(18, 184, 134)",
+  isFloat: "",
   children: null,
   _onClick: () => {},
   isShadow: false,
   _onMouseOver: () => {},
+  borderColor: "",
+  border: "",
 };
 
 const ElButton = styled.button`
@@ -62,17 +68,18 @@ const ElButton = styled.button`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   box-sizing: border-box;
-  border: none;
+  border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
+  border-color: ${(props) => props.borderColor};
   font-size: ${(props) => props.size};
   color: ${(props) => props.color};
-  font-weight: ${(props) => (props.bold ? '600' : '400')};
+  font-weight: ${(props) => (props.bold ? "600" : "400")};
   background-color: ${(props) => props.backgroundColor};
   cursor: pointer;
   ${(props) =>
     props.isShadow
       ? `box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.12);`
-      : ''}
+      : ""}
 `;
 
 export default Button;

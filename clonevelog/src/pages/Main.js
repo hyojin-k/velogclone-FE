@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import {FiClock} from 'react-icons/fi';
+import React, { useEffect } from "react";
+import styled from "styled-components";
+// import {FiClock} from 'react-icons/fi';
 
-import Header from '../shared/Header';
-import Post from '../components/Post';
+import Header from "../shared/Header";
+import Post from "../components/Post";
 
-import { history } from '../redux/configureStore';
-import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators as postActions } from '../redux/modules/post';
+import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Main = (props) => {
   const dispatch = useDispatch();
@@ -23,9 +23,16 @@ const Main = (props) => {
     <React.Fragment>
       <Header />
       <Recent>
-        <FiClock style={{width: '22px',height:'22px', margin: '0 10px', verticalAlign:'top'}}/>
+        {/* <FiClock
+          style={{
+            width: "22px",
+            height: "22px",
+            margin: "0 10px",
+            verticalAlign: "top",
+          }}
+        /> */}
         최신
-        </Recent>
+      </Recent>
       <PostList>
         {post_list.map((p, idx) => {
           return <Post key={idx} {...p} />;
@@ -51,6 +58,6 @@ const PostList = styled.div`
   margin: 0 auto;
   /* border: 1px solid green; 
   box-sizing: border-box; */
-`
+`;
 
 export default Main;
