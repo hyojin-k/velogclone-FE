@@ -5,7 +5,8 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 
 //pages
-import Signin from "../pages/Signin";
+import Header from "./Header";
+// import Signin from "../pages/Signin";
 import Main from "../pages/Main";
 import Detail from "../pages/Detail";
 import Postadd from "../pages/Postadd";
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <React.Fragment>
+      <Header />
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main} />
         <Route path="/write" exact component={Postadd} />
