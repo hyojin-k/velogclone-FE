@@ -21,30 +21,43 @@ const deletePost = createAction(DELETE_POST, (postingId) =>({postingId}));
 const initialState = {
   list: [
       {
-          postingId: '1',
-          thumbNail:'img.jpg',
-          title:'타이틀',
-          content:'내용',
-          dayBefore: '7일 전',
-          commentCnt:'2개',
-          userNave:'hyo'
+        commentCnt: 2,
+        content: "내용임",
+        dayBefore: "3분전",
+        imageFile: null,
+        postingId: 2,
+        title: "제목임",
+        userName: "hyo"
       }
   ],
 };
 
 // middleware
-const getPostMW = () =>{
+const getPostMW = (postingId) =>{
     return function (dispatch, getState, { history }) {
+        console.log(postingId)
         apis
             .getPostAX()
             .then((res) =>{
                 const post_list = res.data;
                 console.log(post_list);
-                dispatch(setPost(post_list));
-                console.log('등록 완료')
+                // if(postingId){
+                //     const post = post_list.filter(p =>postingId === postingId)[0];
+                //     console.log('셋포스트', postingId)
+
+                //     dispatch(setPost(post));
+                // }else {
+                    // console.log('셋포스트', postingId)
+
+                    dispatch(setPost(post_list));
+
+                // }
+                console.log('게시물 불러오기 완료')
+                window.alert('게시물 불러오기 완료')
             })
             .catch((err) =>{
                 console.log(err);
+                window.alert('게시물 불러오기 실패')
             })
     }
 }
@@ -74,7 +87,7 @@ const addPostMW = (post) =>{
             .createPostAX(post)
             .then((res) =>{
                 dispatch(addPost(post));
-                console.log(res);
+                console.log(res.data.msg);
             })
             .catch((err)=>{
                 console.log(err)

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-// import {FiClock} from 'react-icons/fi';
+import {FiClock} from 'react-icons/fi';
 
 import Header from "../shared/Header";
 import Post from "../components/Post";
@@ -23,14 +23,14 @@ const Main = (props) => {
     <React.Fragment>
       <Header />
       <Recent>
-        {/* <FiClock
+        <FiClock
           style={{
             width: "22px",
             height: "22px",
             margin: "0 10px",
             verticalAlign: "top",
           }}
-        /> */}
+        />
         최신
       </Recent>
       <PostList>

@@ -7,9 +7,8 @@ import { history } from "../redux/configureStore";
 
 const Post = (props) => {
   const {
-    id,
     postingId, 
-    thumNail,
+    imageFile,
     title,
     content,
     dayBefore,
@@ -19,10 +18,10 @@ const Post = (props) => {
   return (
     <>
       <Wrap>
-        <ImageBtn onClick = {()=>{history.push(`detail/${id}`)}}>
-          <Image></Image>
+        <ImageBtn onClick = {()=>{history.push(`/detail/${postingId}`)}}>
+          <Image>{imageFile}</Image>
         </ImageBtn>
-        <Description onClick={()=>{history.push(`detail/${postingId}`)}}>
+        <Description onClick={()=>{history.push(`/detail/${postingId}`)}}>
           <TextWrap>
             <Title>{title}</Title>
             <Text>{content}</Text>

@@ -1,23 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Header from '../shared/Header'
 import GetPostComment from '../components/Detail/GetPostComment';
 
+import { history } from '../redux/configureStore';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
+
 const Detail = (props) => {
+  const dispatch = useDispatch();
+  const post = useSelector(state =>state.post.list);
+  console.log(post)
+  const postingId = props.match.params.postingId;
+  console.log(postingId)
+
+  useEffect(()=>{
+    dispatch(postActions.getPostMW(postingId));
+  },[])
+
   return (
     <React.Fragment>
       <Header />
       <Wrap>
         <TitleWrap>
-          <Title>타이틀</Title>
-          <User>유저네임</User>
-          <Date> · 3일 전</Date>
+          <Title>{post.title}</Title>
+          <User>{post.userName}</User>
+          <Date> · {post.commentCnt}일 전</Date>
         </TitleWrap>
-        <Content>내용</Content>
+        <Content>{post.content}</Content>
         <Profile>
           <ProfileImage></ProfileImage>
-          <UserName>hyo</UserName>
+          <UserName>{post.userName}</UserName>
         </Profile>
         <GetPostComment />
       </Wrap>

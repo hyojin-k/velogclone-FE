@@ -23,11 +23,10 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
-        <Route path="/detail" exact component={Detail} />
-        {/* <Route path="/Login" exact component={Signin} /> */}
         <Route path="/" exact component={Main} />
         <Route path="/write" exact component={Postadd} />
-        <Route path="/mypage" exact component={Mypostlist} />
+        <Route path="/detail/:postingId" exact component={Detail} />
+        <Route path="/mypage/:userName" exact component={Mypostlist} />
       </ConnectedRouter>
     </React.Fragment>
   );

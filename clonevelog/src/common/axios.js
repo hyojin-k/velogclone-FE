@@ -46,14 +46,14 @@ export const apis = {
     ),
 
   // 게시물 불러오기
-  getPostAX: () => instance.get("/posting"),
+  getPostAX: () => instance.get("/api/posting"),
   // 유저 게시물 불러오기
-  getMyPostAX: (userName) => instance.get(`/mypage/${userName}`),
+  // getMyPostAX: (userName) => instance.get(`/api/mypage/${userName}`),
   // 게시물 작성하기
-  createPostAX: (post) => instance.post("/posting", post),
+  createPostAX: (post) => instance.post("/api/posting", post),
   // 게시물 수정하기
   editPostAX: (id, title, content) =>
-    instance.put(`/posting/${id}`, { title, content }),
+    instance.put(`/api/posting/${id}`, { title, content }),
   // 게시물 삭제하기
-  delPostAX: (id) => instance.delete(`/posting/${id}`),
+  delPostAX: (id) => instance.delete(`/api/posting/${id}`),
 };
