@@ -47,10 +47,17 @@ const LoginDB = (userId, password) => {
       .signin(userId, password)
       .then((res) => {
         console.log(res.data);
-        setCookie("token", res.data.token);
-        localStorage.setItem("userId", userId);
-        dispatch(setUser({ userId: userId }));
-        history.push("/");
+        const token = res.data.token;
+        if (token === null) {
+          window.alert("비밀번호를 잘못 입력하였습니다.");
+          history.push("/");
+        } else {
+          setCookie("is_login", res.data.token);
+          localStorage.setItem("userId", userId);
+          dispatch(setUser({ userId: userId }));
+          history.push("/");
+          window.alert("로그인되었습니다.");
+        }
       })
       .catch((err) => {
         console.error(err.response.data);

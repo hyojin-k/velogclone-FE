@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import {FiClock} from 'react-icons/fi';
+import { FiClock } from "react-icons/fi";
 
-import Header from "../shared/Header";
 import Post from "../components/Post";
 
 import { history } from "../redux/configureStore";
@@ -21,7 +20,6 @@ const Main = (props) => {
 
   return (
     <React.Fragment>
-      <Header />
       <Recent>
         <FiClock
           style={{

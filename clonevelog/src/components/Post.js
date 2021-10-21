@@ -4,24 +4,31 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 // import { useDispatch, useSelector } from "react-redux";
 
-
 const Post = (props) => {
   const {
-    postingId, 
+    postingId,
     imageFile,
     title,
     content,
     dayBefore,
     commentCnt,
-    userName
-  } = props;  
+    userName,
+  } = props;
   return (
     <>
       <Wrap>
-        <ImageBtn onClick = {()=>{history.push(`/detail/${postingId}`)}}>
-          <Image>{imageFile}</Image>
+        <ImageBtn
+          onClick={() => {
+            history.push(`/detail/${postingId}`);
+          }}
+        >
+          <Image src={imageFile} />
         </ImageBtn>
-        <Description onClick={()=>{history.push(`/detail/${postingId}`)}}>
+        <Description
+          onClick={() => {
+            history.push(`/detail/${postingId}`);
+          }}
+        >
           <TextWrap>
             <Title>{title}</Title>
             <Text>{content}</Text>
@@ -30,8 +37,8 @@ const Post = (props) => {
           <Comment>{commentCnt}개의 댓글</Comment>
         </Description>
         <UserName>
-          by <span style={{fontWeight: 'bold'}}>{userName}</span>
-          </UserName>
+          by <span style={{ fontWeight: "bold" }}>{userName}</span>
+        </UserName>
       </Wrap>
     </>
   );
@@ -44,21 +51,21 @@ const Wrap = styled.div`
   height: 377px;
   margin: 20px 10px;
   box-shadow: 0 0 5px #dbdbdb;
-  &:hover{
+  &:hover {
     margin-top: 2px;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 5px 10px #dbdbdb;
   }
 `;
 const ImageBtn = styled.button`
-    display: block;
-    width: 100%;
-    border: none;
-    box-sizing: border-box;
-    background-color: transparent;
-    cursor: pointer;
-    padding: 0;
-`
+  display: block;
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+`;
 const Image = styled.image`
   display: block;
   border-bottom: 1px solid red;
@@ -81,7 +88,7 @@ const TextWrap = styled.button`
   cursor: pointer;
   text-align: left;
   padding: 0;
-`
+`;
 const Title = styled.h2`
   font-size: 16px;
   margin: -24px 0 8px 0;
@@ -89,15 +96,15 @@ const Title = styled.h2`
 const Text = styled.p`
   font-size: 14px;
   line-height: 1.7;
-  margin:0;
+  margin: 0;
 `;
 const Date = styled.span`
   font-size: 12px;
-  color:rgb(134, 142, 150);
+  color: rgb(134, 142, 150);
 `;
 const Comment = styled.span`
   font-size: 12px;
-  color:rgb(134, 142, 150);
+  color: rgb(134, 142, 150);
 `;
 const UserName = styled.div`
   position: absolute;

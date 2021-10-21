@@ -16,6 +16,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const Header = () => {
   const isLogin = useSelector((state) => state.user.is_login);
   console.log("로그인", isLogin);
+
   const dispatch = useDispatch();
   const [LoginMode, setLoginMode] = React.useState(true);
   const [modalOpen, setModalOpen] = React.useState(false);
