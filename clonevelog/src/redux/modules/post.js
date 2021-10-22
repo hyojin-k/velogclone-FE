@@ -6,6 +6,7 @@ import { apis } from "../../common/axios";
 // action
 const SET_POST = "SET_POST";
 // const SET_MY_POST = "SET_MY_POST";
+const DETAIL_POST = 'DETAIL_POST';
 const ADD_POST = "ADD_POST";
 // const UPDATE_POST = "UPDATE_POST";
 const DELETE_POST = "DELETE_POST";
@@ -15,6 +16,7 @@ const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 // const setMyPost = createAction(SET_MY_POST, (my_post_list) => ({
 //   my_post_list,
 // }));
+const detailPost = createAction(DETAIL_POST, (detail) => ({detail}));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const deletePost = createAction(DELETE_POST, (postingId) => ({ postingId }));
 
@@ -81,6 +83,24 @@ const getPostMW = (postingId) => {
 //     }
 // }
 
+const detailPostMW = (postingId) =>{
+  return function(dispatch, getState, {history}) {
+    console.log('디테일 페이지', postingId)
+  
+    apis
+      .detailPostAX(postingId)
+      .then((res) =>{
+        const post = res.data;
+        console.log(post)
+
+        dispatch(detailPost(post))
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+  }
+}
+
 const addPostMW = (post) => {
   return function (dispatch, getState, { history }) {
     apis
@@ -124,10 +144,10 @@ export default handleActions(
     //     draft.list = action.payload.my_post_list;
     //     console.log(draft.list);
     //   }),
-    // [DETAIL_POST]: (state,action) =>
-    //   produce(state, (draft) => {
-    //   draft.detail = action.payload.detail;
-    // }),
+    [DETAIL_POST]: (state,action) =>
+      produce(state, (draft) => {
+      draft.detail = action.payload.detail;
+    }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(action.payload.post);
@@ -135,7 +155,8 @@ export default handleActions(
       }),
     [DELETE_POST]: (state, action) =>
       produce(state,(draft)=>{
-        draft.list = draft.list.filter(p=>p.postingId !== action.payload.postingId)
+        // draft.list = draft.list.filter(p=>p.postingId !== action.payload.postingId)
+        draft.detail = action.payload.detail;
       })  
   },
   initialState
@@ -149,6 +170,7 @@ const actionCreators = {
   deletePost,
   getPostMW,
   // getMyPostMW,
+  detailPostMW,
   addPostMW,
   deletePostMW
 };

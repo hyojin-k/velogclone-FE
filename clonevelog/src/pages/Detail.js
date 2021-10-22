@@ -18,10 +18,11 @@ const Detail = (props) => {
   const postingId = props.match.params.postingId;
   console.log("파람즈 포스팅 아이디", postingId);
 
+
   const is_login = useSelector((state) => state.user.is_login);
   console.log("로그인 확인", is_login);
-  const userName = useSelector((state) => state.post.list.userName);
-  console.log("유저네임", userName);
+  // const userName = useSelector((state) => state.post.list.userName);
+  // console.log("유저네임", userName);
 
   const detailPost = post.filter(
     (detailPost) => detailPost.postingId === Number(postingId)
@@ -29,14 +30,14 @@ const Detail = (props) => {
   console.log("디테일포스트", detailPost);
 
   const detailTitle = detailPost.title;
-  const detailText = detailPost.content;
+  const detaiContent= detailPost.content;
   const detailImageUrl = detailPost.imageUrl;
-  const detailContent = detailText + detailImageUrl;
   const detailUserName = detailPost.userName;
   const detailCommentCnt = detailPost.commentCnt;
+  const detailDayBefore = detailPost.dayBefore;
 
   useEffect(() => {
-    dispatch(postActions.getPostMW());
+    dispatch(postActions.detailPostMW(postingId));
   }, []);
 
   const deletePost = (postingId, userName) => {};
@@ -48,12 +49,12 @@ const Detail = (props) => {
           <Title>{detailTitle}</Title>
           <Sub>
             <User>{detailUserName}</User>
-            <Date> · {detailCommentCnt}일 전</Date>
+            <Date> · {detailDayBefore}</Date>
             <Delete onClick={() => deletePost()}>삭제</Delete>
           </Sub>
         </TitleWrap>
         <Content>
-          <Viewer initialValue={detailText} />
+          <Viewer initialValue={detaiContent} />
           <img src={detailImageUrl} style={{ width: "100%" }} />
         </Content>
         <Profile>
