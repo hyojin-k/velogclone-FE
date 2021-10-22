@@ -71,7 +71,6 @@ const ImageBtn = styled.button`
 `;
 const Image = styled.img`
   display: block;
-  border-bottom: 1px solid red;
   box-sizing: border-box;
   width: 100%;
   height: 167px;

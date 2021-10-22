@@ -38,7 +38,7 @@ const Postadd = (props) => {
   // }
 
   const dataURLtoFile = (dataurl, fileName) => {
-    let arr = dataurl.split(","),
+    let arr = {dataurl}.split(","),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),
       n = bstr.length,
@@ -69,25 +69,25 @@ const Postadd = (props) => {
     const contentMarkdown = editorRef.current.getInstance().getMarkdown();
     const image = contentHTML.split("=")[1]?.split('"')[1];
 
-    // const imageUrl = contentHTML.split("=")[1]?.split('"')[1];
+    const imageUrl = contentHTML.split("=")[1]?.split('"')[1];
 
     const content = contentMarkdown.replaceAll("#", "").split("!")[0];
     // console.log(contentHTML);
     // console.log(imageUrl);
     // console.log(image);
 
-    let fileName = Date.now();
-    let file = dataURLtoFile(image, `${fileName}.jpg`);
-    console.log(file);
-    console.log(content);
+    // let fileName = Date.now();
+    // let file = dataURLtoFile(image, `${fileName}.jpg`);
+    // console.log(file);
+    // console.log(content);
     // downloadURI(image, Date.now());
 
     const post = {
       // userName: jwtToken,
       content: content,
       title: title,
-      filePath: file,
-      // imageUrl: imageUrl,
+      // filePath: file,
+      imageUrl: imageUrl,
     };
     console.log(post);
     dispatch(postActions.addPostMW(post));

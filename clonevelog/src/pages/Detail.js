@@ -15,9 +15,11 @@ const Detail = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.list);
   console.log("상세포스트", post);
+  const detail = useSelector((state) => state.post.detail);
+  console.log('디테일포스트', detail);
+
   const postingId = props.match.params.postingId;
   console.log("파람즈 포스팅 아이디", postingId);
-
 
   const is_login = useSelector((state) => state.user.is_login);
   console.log("로그인 확인", is_login);
@@ -27,14 +29,25 @@ const Detail = (props) => {
   const detailPost = post.filter(
     (detailPost) => detailPost.postingId === Number(postingId)
   )[0];
-  console.log("디테일포스트", detailPost);
+  // console.log("디테일포스트", detailPost);
+  console.log(detail?.title)
+  console.log(detail?.dayBefore);
 
-  const detailTitle = detailPost.title;
-  const detaiContent= detailPost.content;
-  const detailImageUrl = detailPost.imageUrl;
+  const title = detail?.title
+  const content = detail?.content
+  const dayBefore = detail?.dayBefore
+  const imageUrl = detail?.imageUrl
+  const filePath = detail?.filePath
+
+
+  // const detailTitle = detailPost.title;
+  // const detailContent= detailPost.content;
+  // const detailImageUrl = detailPost.imageUrl;
+  // const detailDayBefore = detailPost.dayBefore;
+
   const detailUserName = detailPost.userName;
   const detailCommentCnt = detailPost.commentCnt;
-  const detailDayBefore = detailPost.dayBefore;
+
 
   useEffect(() => {
     dispatch(postActions.detailPostMW(postingId));
@@ -46,16 +59,17 @@ const Detail = (props) => {
     <React.Fragment>
       <Wrap>
         <TitleWrap>
-          <Title>{detailTitle}</Title>
+          <Title>{title}</Title>
           <Sub>
             <User>{detailUserName}</User>
-            <Date> · {detailDayBefore}</Date>
+            <Date> · {dayBefore}</Date>
             <Delete onClick={() => deletePost()}>삭제</Delete>
           </Sub>
         </TitleWrap>
         <Content>
-          <Viewer initialValue={detaiContent} />
-          <img src={detailImageUrl} style={{ width: "100%" }} />
+          {/* <Viewer initialValue={content} /> */}
+          <div>{content}</div>
+          <img src={imageUrl} style={{ width: "100%" }} />
         </Content>
         <Profile>
           <ProfileImage></ProfileImage>
