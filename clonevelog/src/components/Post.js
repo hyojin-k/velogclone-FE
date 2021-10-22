@@ -7,13 +7,15 @@ import { history } from "../redux/configureStore";
 const Post = (props) => {
   const {
     postingId,
-    imageFile,
+    filePath,
     title,
     content,
     dayBefore,
     commentCnt,
     userName,
+    imageUrl,
   } = props;
+
   return (
     <>
       <Wrap>
@@ -22,7 +24,8 @@ const Post = (props) => {
             history.push(`/detail/${postingId}`);
           }}
         >
-          <Image src={imageFile} />
+          {/* <Image src={filePath} /> */}
+          <Image src={imageUrl} />
         </ImageBtn>
         <Description
           onClick={() => {
@@ -66,7 +69,7 @@ const ImageBtn = styled.button`
   cursor: pointer;
   padding: 0;
 `;
-const Image = styled.image`
+const Image = styled.img`
   display: block;
   border-bottom: 1px solid red;
   box-sizing: border-box;
