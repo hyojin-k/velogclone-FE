@@ -5,7 +5,7 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
 
 import Header from "../shared/Header";
-import Comment from '../components/Comment'
+import Comment from "../components/Comment";
 
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,33 +14,32 @@ import { actionCreators as postActions } from "../redux/modules/post";
 const Detail = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.list);
-  console.log('상세포스트', post);
+  console.log("상세포스트", post);
   const postingId = props.match.params.postingId;
-  console.log('파람즈 포스팅 아이디', postingId);
+  console.log("파람즈 포스팅 아이디", postingId);
 
   const is_login = useSelector((state) => state.user.is_login);
-  console.log('로그인 확인', is_login);
+  console.log("로그인 확인", is_login);
   const userName = useSelector((state) => state.post.list.userName);
-  console.log('유저네임', userName);
+  console.log("유저네임", userName);
 
   const detailPost = post.filter(
-    (detailPost) => detailPost.postingId === Number(postingId))[0];
-  console.log('디테일포스트', detailPost);
+    (detailPost) => detailPost.postingId === Number(postingId)
+  )[0];
+  console.log("디테일포스트", detailPost);
 
-    const detailTitle = detailPost.title;
-    const detailText = detailPost.content;
-    const detailImageUrl = detailPost.imageUrl;
-    const detailContent = detailText + detailImageUrl;
-    const detailUserName = detailPost.userName;
-    const detailCommentCnt = detailPost.commentCnt;
+  const detailTitle = detailPost.title;
+  const detailText = detailPost.content;
+  const detailImageUrl = detailPost.imageUrl;
+  const detailContent = detailText + detailImageUrl;
+  const detailUserName = detailPost.userName;
+  const detailCommentCnt = detailPost.commentCnt;
 
   useEffect(() => {
     dispatch(postActions.getPostMW());
   }, []);
 
-  const deletePost = (postingId, userName) =>{
-
-  }
+  const deletePost = (postingId, userName) => {};
 
   return (
     <React.Fragment>
@@ -54,8 +53,8 @@ const Detail = (props) => {
           </Sub>
         </TitleWrap>
         <Content>
-          <Viewer initialValue={detailText}  />
-          <img src={detailImageUrl} style={{width: '100%'}}/>
+          <Viewer initialValue={detailText} />
+          <img src={detailImageUrl} style={{ width: "100%" }} />
         </Content>
         <Profile>
           <ProfileImage></ProfileImage>
@@ -64,12 +63,12 @@ const Detail = (props) => {
         <CommentWrap>
           <CommentWrite>
             <CommentCnt>{detailCommentCnt}개의 댓글</CommentCnt>
-            <CommentInput placeholder='댓글을 작성하세요'></CommentInput>
+            <CommentInput placeholder="댓글을 작성하세요"></CommentInput>
             <CommentBtn>댓글작성</CommentBtn>
           </CommentWrite>
           <CommentList>
-            <Comment/>
-            <Comment/>
+            <Comment />
+            <Comment />
           </CommentList>
         </CommentWrap>
       </Wrap>
@@ -91,8 +90,8 @@ const Title = styled.h1`
 `;
 const Sub = styled.div`
   position: relative;
-`
-const Content = styled.div``
+`;
+const Content = styled.div``;
 // const Image = styled.image`
 //   display: block;
 //   width: 100%;
@@ -113,7 +112,7 @@ const Delete = styled.button`
   color: #444;
   font-size: 16px;
   cursor: pointer;
-`
+`;
 // const Content = styled.div``;
 const Profile = styled.div`
   display: flex;
@@ -137,47 +136,47 @@ const UserName = styled.span`
   margin-left: 20px;
 `;
 
-  const CommentWrap = styled.div`
-    box-sizing: border-box;
-  `
-  const CommentWrite = styled.div`
-    box-sizing: border-box;
-  `
-  const CommentCnt = styled.p`
-    font-weight: bold;
-  `
-  const CommentInput = styled.textarea`
-    border: 1px solid #e6e6e6;
-    box-sizing: border-box;
-    width: 100%;
-    height: 98px;
-    padding: 16px;
-    margin-bottom: 24px;
-    resize: none;
-    font-size: 16px;
-    &::-webkit-scrollbar {
+const CommentWrap = styled.div`
+  box-sizing: border-box;
+`;
+const CommentWrite = styled.div`
+  box-sizing: border-box;
+`;
+const CommentCnt = styled.p`
+  font-weight: bold;
+`;
+const CommentInput = styled.textarea`
+  border: 1px solid #e6e6e6;
+  box-sizing: border-box;
+  width: 100%;
+  height: 98px;
+  padding: 16px;
+  margin-bottom: 24px;
+  resize: none;
+  font-size: 16px;
+  &::-webkit-scrollbar {
     display: none;
-    }
-    &::placeholder {
-      color: #888;
-    }
-  `
-  const CommentBtn = styled.button`
-    border: none;
-    color: #fff;
-    font-weight: bold;
-    background-color: rgb(18, 184, 134);
-    font-size: 16px;
-    height: 40px;
-    padding: 0 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    &:hover {
-      background-color: rgb(18, 194, 124);
-    }
-  `
-  const CommentList = styled.div`
-    box-sizing: border-box;
-  `
+  }
+  &::placeholder {
+    color: #888;
+  }
+`;
+const CommentBtn = styled.button`
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  background-color: rgb(18, 184, 134);
+  font-size: 16px;
+  height: 40px;
+  padding: 0 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  &:hover {
+    background-color: rgb(18, 194, 124);
+  }
+`;
+const CommentList = styled.div`
+  box-sizing: border-box;
+`;
 
 export default Detail;
