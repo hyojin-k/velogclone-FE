@@ -13,31 +13,30 @@ import { actionCreators as postActions } from "../redux/modules/post";
 const Detail = (props) => {
   const dispatch = useDispatch();
   const post = useSelector((state) => state.post.list);
-  console.log('상세포스트', post);
+  console.log("상세포스트", post);
   const postingId = props.match.params.postingId;
-  console.log('파람즈 포스팅 아이디', postingId);
+  console.log("파람즈 포스팅 아이디", postingId);
 
   const is_login = useSelector((state) => state.user.is_login);
-  console.log('로그인 확인', is_login);
+  console.log("로그인 확인", is_login);
   const userName = useSelector((state) => state.post.list.userName);
-  console.log('유저네임', userName);
+  console.log("유저네임", userName);
 
   const detailPost = post.filter(
-    (detailPost) => detailPost.postingId === Number(postingId))[0];
-  console.log('디테일포스트', detailPost);
+    (detailPost) => detailPost.postingId === Number(postingId)
+  )[0];
+  console.log("디테일포스트", detailPost);
 
-    const detailTitle = detailPost.title;
-    const detailContent = detailPost.content;
-    const detailUserName = detailPost.userName;
-    const detailCommentCnt = detailPost.commentCnt;
+  const detailTitle = detailPost.title;
+  const detailContent = detailPost.content;
+  const detailUserName = detailPost.userName;
+  const detailCommentCnt = detailPost.commentCnt;
 
   useEffect(() => {
     dispatch(postActions.getPostMW());
   }, []);
 
-  const deletePost = (postingId, userName) =>{
-
-  }
+  const deletePost = (postingId, userName) => {};
 
   return (
     <React.Fragment>
@@ -55,7 +54,7 @@ const Detail = (props) => {
           <ProfileImage></ProfileImage>
           <UserName>{detailUserName}</UserName>
         </Profile>
-        <GetPostComment />
+        <GetPostComment postingId={postingId} />
       </Wrap>
     </React.Fragment>
   );
@@ -75,7 +74,7 @@ const Title = styled.h1`
 `;
 const Sub = styled.div`
   position: relative;
-`
+`;
 const User = styled.span`
   font-weight: bold;
 `;
@@ -89,7 +88,7 @@ const Delete = styled.button`
   color: #444;
   font-size: 16px;
   cursor: pointer;
-`
+`;
 const Content = styled.div``;
 const Profile = styled.div`
   display: flex;

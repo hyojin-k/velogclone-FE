@@ -51,10 +51,10 @@ const getPostMW = (postingId) => {
         }
         console.log("게시물 불러오기 완료");
         // window.alert('게시물 불러오기 완료')
-        post_list.forEach((post) => {
-          const path = `http://54.180.148.132/display/${post.filePath}`;
-          post.filePath = path;
-        });
+        // post_list.forEach((post) => {
+        //   const path = `http://54.180.148.132/display/${post.filePath}`;
+        //   post.filePath = path;
+        // });
       })
       .catch((err) => {
         console.log(err);

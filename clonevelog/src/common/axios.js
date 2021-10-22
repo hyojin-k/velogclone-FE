@@ -62,4 +62,15 @@ export const apis = {
   //   instance.put(`/api/posting/${id}`, { title, content }),
   // 게시물 삭제하기
   delPostAX: (id) => instance.delete(`/api/posting/${id}`),
+
+  //댓글 작성
+  addCommentAX: (id, comment) =>
+    instance.post(`/api/comment/${id}`, {
+      headers: {
+        "content-type": "application/json",
+        "X-AUTH-TOKEN": `${getCookie("token")}`,
+      },
+    }),
+
+  getCommentAX: (id) => instance.get(`/api/posting/${id}`),
 };
