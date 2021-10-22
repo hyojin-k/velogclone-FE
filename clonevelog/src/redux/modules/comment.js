@@ -1,12 +1,12 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import apis from "axios";
-import axios from "axios";
+import { apis } from "../../common/axios";
 
 const ADD_COMMENT = "ADD_COMMENT";
 const GET_COMMENT = "GET_COMMENT";
 
-const addComment = createAction(ADD_COMMENT, (comment) => ({
+const addComment = createAction(ADD_COMMENT, (id, comment) => ({
+  id,
   comment,
 }));
 const getComment = createAction(GET_COMMENT, (comment_list) => ({
@@ -16,10 +16,6 @@ const getComment = createAction(GET_COMMENT, (comment_list) => ({
 const initialState = {
   list: [
     {
-      createdAt: "2021-10-19 21:16:37",
-      modifiedAt: "2021-10-19 21:16:37",
-      id: 13,
-      userName: "bbb",
       comment: "내용1",
       postingId: 3,
     },
@@ -42,14 +38,15 @@ const getCommentDB = (id) => {
   };
 };
 
-const addCommentDB = (id, comment) => {
+const addCommentDB = (comment, postingId) => {
   return function (dispatch, getState, { history }) {
     apis
-      .addCommentAX(id, { comment })
+      .addCommentAX(postingId, comment)
       .then((res) => {
         console.log(res.data);
-        const comment = res.data;
-        dispatch(addComment(comment));
+
+        dispatch(addComment(postingId, comment));
+        console.log(comment);
       })
       .catch((error) => {
         console.error(error);
