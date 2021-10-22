@@ -16,21 +16,9 @@ const Detail = (props) => {
   const dispatch = useDispatch();
   const [comment, setComment] = React.useState();
   const post = useSelector((state) => state.post.list);
-<<<<<<< HEAD
-  console.log("상세포스트", post);
-  const postingId = props.match.params.postingId;
-  console.log("파람즈 포스팅 아이디", postingId);
-
-
-  const is_login = useSelector((state) => state.user.is_login);
-  console.log("로그인 확인", is_login);
-  // const userName = useSelector((state) => state.post.list.userName);
-  // console.log("유저네임", userName);
-=======
   const postingId = Number(props.match.params.postingId);
   const is_login = useSelector((state) => state.user.is_login);
   const userName = useSelector((state) => state.post.list.userName);
->>>>>>> comment
 
   const detailPost = post.filter(
     (detailPost) => detailPost.postingId === Number(postingId)
