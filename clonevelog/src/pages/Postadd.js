@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import { MdOutlineArrowBack } from 'react-icons/md';
+import { MdOutlineArrowBack } from "react-icons/md";
 
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
@@ -37,17 +37,17 @@ const Postadd = (props) => {
   //     setContent(e.target.value);
   // }
 
-  // const dataURLtoFile = (dataurl, fileName) => {
-  //   let arr = dataurl.split(","),
-  //     mime = arr[0].match(/:(.*?);/)[1],
-  //     bstr = atob(arr[1]),
-  //     n = bstr.length,
-  //     u8arr = new Uint8Array(n);
-  //   while (n--) {
-  //     u8arr[n] = bstr.charCodeAt(n);
-  //   }
-  //   return new File([u8arr], fileName, { type: mime });
-  // };
+  const dataURLtoFile = (dataurl, fileName) => {
+    let arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], fileName, { type: mime });
+  };
 
   // // 파일 다운로드
   // function downloadURI(uri, name) {
@@ -67,27 +67,27 @@ const Postadd = (props) => {
     // console.log(editorRef)
     const contentHTML = editorRef.current.getInstance().getHTML();
     const contentMarkdown = editorRef.current.getInstance().getMarkdown();
-    // const image = contentHTML.split("=")[1]?.split('"')[1];
+    const image = contentHTML.split("=")[1]?.split('"')[1];
 
-    const imageUrl = contentHTML.split("=")[1]?.split('"')[1];
+    // const imageUrl = contentHTML.split("=")[1]?.split('"')[1];
 
     const content = contentMarkdown.replaceAll("#", "").split("!")[0];
     // console.log(contentHTML);
     // console.log(imageUrl);
     // console.log(image);
 
-    // let fileName = Date.now();
-    // let file = dataURLtoFile(image, `${fileName}.jpg`);
-    // console.log(file);
-    // console.log(content);
+    let fileName = Date.now();
+    let file = dataURLtoFile(image, `${fileName}.jpg`);
+    console.log(file);
+    console.log(content);
     // downloadURI(image, Date.now());
 
     const post = {
       // userName: jwtToken,
       content: content,
       title: title,
-      // filePath: file,
-      imageUrl: imageUrl,
+      filePath: file,
+      // imageUrl: imageUrl,
     };
     console.log(post);
     dispatch(postActions.addPostMW(post));
