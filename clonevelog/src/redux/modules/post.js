@@ -29,7 +29,7 @@ const initialState = {
       commentCnt: 2,
       content: "내용임",
       dayBefore: "3분전",
-      imageFile: null,
+      filePath: null,
       postingId: 2,
       title: "제목임",
       userName: "hyo",
@@ -40,7 +40,6 @@ const initialState = {
 // middleware
 const getPostMW = (postingId) => {
   return function (dispatch, getState, { history }) {
-    console.log(postingId);
     apis
       .getPostAX()
       .then((res) => {
@@ -53,6 +52,11 @@ const getPostMW = (postingId) => {
         //     dispatch(setPost(post));
         // }else {
         // console.log('셋포스트', postingId)
+
+        post_list.forEach((post) => {
+          const path = `http://54.180.148.132/display/${post.filePath}`;
+          post.filePath = path;
+        });
 
         dispatch(setPost(post_list));
 
@@ -86,13 +90,12 @@ const getPostMW = (postingId) => {
 
 const addPostMW = (post) => {
   return function (dispatch, getState, { history }) {
-    console.log(post);
-
     apis
       .createPostAX(post)
       .then((res) => {
-        dispatch(addPost(post));
         console.log(res.data.msg);
+        dispatch(addPost(post));
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
