@@ -36,18 +36,17 @@ const Postadd = (props) => {
   // const changeContent = (e) =>{
   //     setContent(e.target.value);
   // }
-
-  const dataURLtoFile = (dataurl, fileName) => {
-    let arr = {dataurl}.split(","),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], fileName, { type: mime });
-  };
+  // const dataURLtoFile = (dataurl, fileName) => {
+  //   let arr = dataurl.split(","),
+  //     mime = arr[0].match(/:(.*?);/)[1],
+  //     bstr = atob(arr[1]),
+  //     n = bstr.length,
+  //     u8arr = new Uint8Array(n);
+  //   while (n--) {
+  //     u8arr[n] = bstr.charCodeAt(n);
+  //   }
+  //   return new File([u8arr], fileName, { type: mime });
+  // };
 
   // // 파일 다운로드
   // function downloadURI(uri, name) {
@@ -67,7 +66,7 @@ const Postadd = (props) => {
     // console.log(editorRef)
     const contentHTML = editorRef.current.getInstance().getHTML();
     const contentMarkdown = editorRef.current.getInstance().getMarkdown();
-    const image = contentHTML.split("=")[1]?.split('"')[1];
+    // const image = contentHTML.split("=")[1]?.split('"')[1];
 
     const imageUrl = contentHTML.split("=")[1]?.split('"')[1];
 

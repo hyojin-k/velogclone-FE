@@ -10,44 +10,40 @@ import Comment from "../components/Comment";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
+  const [comment, setComment] = React.useState();
   const post = useSelector((state) => state.post.list);
-  console.log("상세포스트", post);
-  const detail = useSelector((state) => state.post.detail);
-  console.log('디테일포스트', detail);
-
-  const postingId = props.match.params.postingId;
-  console.log("파람즈 포스팅 아이디", postingId);
-
+  const detail = useSelector((state)=> state.post.detail)
+  const postingId = Number(props.match.params.postingId);
   const is_login = useSelector((state) => state.user.is_login);
-  console.log("로그인 확인", is_login);
-  // const userName = useSelector((state) => state.post.list.userName);
-  // console.log("유저네임", userName);
+  const userName = useSelector((state) => state.post.list.userName);
 
   const detailPost = post.filter(
     (detailPost) => detailPost.postingId === Number(postingId)
   )[0];
-  // console.log("디테일포스트", detailPost);
-  console.log(detail?.title)
-  console.log(detail?.dayBefore);
-
   const title = detail?.title
   const content = detail?.content
   const dayBefore = detail?.dayBefore
   const imageUrl = detail?.imageUrl
   const filePath = detail?.filePath
 
-
-  // const detailTitle = detailPost.title;
-  // const detailContent= detailPost.content;
-  // const detailImageUrl = detailPost.imageUrl;
-  // const detailDayBefore = detailPost.dayBefore;
-
   const detailUserName = detailPost.userName;
   const detailCommentCnt = detailPost.commentCnt;
 
+
+  const onChangeComment = (e) => {
+    setComment(e.target.value);
+    console.log("코멘트작성");
+  };
+  const onClickComment = () => {
+    console.log(typeof postingId);
+    console.log(postingId, comment);
+    dispatch(commentActions.addCommentDB(comment, postingId));
+    console.log("작성!!");
+  };
 
   useEffect(() => {
     dispatch(postActions.detailPostMW(postingId));
@@ -78,8 +74,11 @@ const Detail = (props) => {
         <CommentWrap>
           <CommentWrite>
             <CommentCnt>{detailCommentCnt}개의 댓글</CommentCnt>
-            <CommentInput placeholder="댓글을 작성하세요"></CommentInput>
-            <CommentBtn>댓글작성</CommentBtn>
+            <CommentInput
+              placeholder="댓글을 작성하세요"
+              onChange={onChangeComment}
+            ></CommentInput>
+            <CommentBtn onClick={onClickComment}>댓글작성</CommentBtn>
           </CommentWrite>
           <CommentList>
             <Comment />

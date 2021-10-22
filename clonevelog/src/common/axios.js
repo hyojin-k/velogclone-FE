@@ -58,8 +58,7 @@ export const apis = {
       },
     }),
   // 게시물 상세
-  detailPostAX: (postingId) =>
-    instance.get(`/api/posting/${postingId}`),
+  detailPostAX: (postingId) => instance.get(`/api/posting/${postingId}`),
   // 게시물 수정하기
   // editPostAX: (id, title, content) =>
   //   instance.put(`/api/posting/${id}`, { title, content }),
@@ -67,13 +66,17 @@ export const apis = {
   delPostAX: (postingId) => instance.delete(`/api/posting/${postingId}`),
 
   //댓글 작성
-  addCommentAX: (id, comment) =>
-    instance.post(`/api/comment/${id}`, {
-      headers: {
-        "content-type": "application/json",
-        "X-AUTH-TOKEN": `${getCookie("token")}`,
-      },
-    }),
+  addCommentAX: (postingId, comment) =>
+    instance.post(
+      `/api/comment`,
+      { comment: comment, postingId: postingId },
+      {
+        headers: {
+          "content-type": "application/json",
+          "X-AUTH-TOKEN": `${getCookie("token")}`,
+        },
+      }
+    ),
 
   getCommentAX: (id) => instance.get(`/api/posting/${id}`),
 };
