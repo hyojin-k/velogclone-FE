@@ -5,21 +5,17 @@ import { apis } from "../../common/axios";
 
 // action
 const SET_POST = "SET_POST";
-const SET_MY_POST = "SET_MY_POST";
+// const SET_MY_POST = "SET_MY_POST";
 const ADD_POST = "ADD_POST";
-const UPDATE_POST = "UPDATE_POST";
+// const UPDATE_POST = "UPDATE_POST";
 const DELETE_POST = "DELETE_POST";
 
 // action creators
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
-const setMyPost = createAction(SET_MY_POST, (my_post_list) => ({
-  my_post_list,
-}));
+// const setMyPost = createAction(SET_MY_POST, (my_post_list) => ({
+//   my_post_list,
+// }));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
-const updatePost = createAction(UPDATE_POST, (postingId, post) => ({
-  postingId,
-  post,
-}));
 const deletePost = createAction(DELETE_POST, (postingId) => ({ postingId }));
 
 // initialState
@@ -47,13 +43,14 @@ const getPostMW = (postingId) =>{
                 const post_list = res.data.data;
                 console.log(post_list);
                 if(postingId){
-                    const post = post_list.filter(p =>postingId === postingId)[0];
+                    const post = post_list.filter(p =>p.postingId === postingId[0]);
+                    console.log(post)
                     dispatch(setPost(post));
                 }else {
                     dispatch(setPost(post_list));
                 }
                 console.log('게시물 불러오기 완료')
-                window.alert('게시물 불러오기 완료')
+                // window.alert('게시물 불러오기 완료')
             })
             .catch((err) =>{
                 console.log(err);
@@ -103,11 +100,15 @@ export default handleActions(
         draft.list = action.payload.post_list;
         console.log(draft.list);
       }),
-    [SET_MY_POST]: (state, action) =>
-      produce(state, (draft) => {
-        draft.list = action.payload.my_post_list;
-        console.log(draft.list);
-      }),
+    // [SET_MY_POST]: (state, action) =>
+    //   produce(state, (draft) => {
+    //     draft.list = action.payload.my_post_list;
+    //     console.log(draft.list);
+    //   }),
+    // [DETAIL_POST]: (state,action) =>
+    //   produce(state, (draft) => {
+    //   draft.detail = action.payload.detail;
+    // }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(action.payload.post);
@@ -121,7 +122,7 @@ export default handleActions(
 const actionCreators = {
   setPost,
   addPost,
-  updatePost,
+//   updatePost,
   deletePost,
   getPostMW,
   // getMyPostMW,

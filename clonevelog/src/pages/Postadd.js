@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-// import { MdOutlineArrowBack } from 'react-icons/md';
+import { MdOutlineArrowBack } from 'react-icons/md';
 
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
@@ -74,7 +74,7 @@ const Postadd = (props) => {
           className="submitBtn"
           onClick={canclePost}
         >
-          {/* <MdOutlineArrowBack style={{ marginRight: "10px" }} /> */}
+          <MdOutlineArrowBack style={{ marginRight: "10px" }} />
           나가기
         </Cancle>
         <Add

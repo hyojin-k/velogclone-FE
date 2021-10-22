@@ -57,8 +57,8 @@ export const apis = {
     },
   }),
   // 게시물 수정하기
-  editPostAX: (id, title, content) =>
-    instance.put(`/api/posting/${id}`, { title, content }),
+  // editPostAX: (id, title, content) =>
+  //   instance.put(`/api/posting/${id}`, { title, content }),
   // 게시물 삭제하기
   delPostAX: (id) => instance.delete(`/api/posting/${id}`),
 };
