@@ -10,6 +10,7 @@ import Header from "./Header";
 import Main from "../pages/Main";
 import Detail from "../pages/Detail";
 import Postadd from "../pages/Postadd";
+import Postadd2 from '../pages/Postadd2';
 import Mypostlist from "../components/Mypostlist";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -27,6 +28,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main} />
         <Route path="/write" exact component={Postadd} />
+        <Route path='/write2' exact component = {Postadd2} />
         <Route path="/detail/:postingId" exact component={Detail} />
         <Route path="/mypage/:userName" exact component={Mypostlist} />
       </ConnectedRouter>

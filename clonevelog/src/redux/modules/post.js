@@ -92,6 +92,21 @@ const addPostMW = (post) => {
   };
 };
 
+const deletePostMW = (postingId) =>{
+  return function(dispatch, getState, {history}){
+    apis
+      .delPostAX(postingId)
+      .then((res)=>{
+        console.log(res)
+        window.alert('게시글 삭제 완료')
+        dispatch(deletePost(postingId));
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
+  }
+}
+
 // reducer
 export default handleActions(
   {
@@ -114,6 +129,10 @@ export default handleActions(
         draft.list.push(action.payload.post);
         console.log(draft.list);
       }),
+    [DELETE_POST]: (state, action) =>
+      produce(state,(draft)=>{
+        draft.list = draft.list.filter(p=>p.postingId !== action.payload.postingId)
+      })  
   },
   initialState
 );
@@ -127,6 +146,7 @@ const actionCreators = {
   getPostMW,
   // getMyPostMW,
   addPostMW,
+  deletePostMW
 };
 
 export { actionCreators };

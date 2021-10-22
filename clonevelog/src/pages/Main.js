@@ -31,6 +31,11 @@ const Main = (props) => {
         />
         최신
       </Recent>
+
+      <button onClick={()=>{history.push('/write2')}}>
+        작성
+      </button>
+
       <PostList>
         {post_list.map((p, idx) => {
           return <Post key={idx} {...p} />;
