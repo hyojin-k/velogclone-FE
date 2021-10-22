@@ -10,10 +10,13 @@ import Comment from "../components/Comment";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
+  const [comment, setComment] = React.useState();
   const post = useSelector((state) => state.post.list);
+<<<<<<< HEAD
   console.log("상세포스트", post);
   const postingId = props.match.params.postingId;
   console.log("파람즈 포스팅 아이디", postingId);
@@ -23,18 +26,32 @@ const Detail = (props) => {
   console.log("로그인 확인", is_login);
   // const userName = useSelector((state) => state.post.list.userName);
   // console.log("유저네임", userName);
+=======
+  const postingId = Number(props.match.params.postingId);
+  const is_login = useSelector((state) => state.user.is_login);
+  const userName = useSelector((state) => state.post.list.userName);
+>>>>>>> comment
 
   const detailPost = post.filter(
     (detailPost) => detailPost.postingId === Number(postingId)
   )[0];
-  console.log("디테일포스트", detailPost);
-
   const detailTitle = detailPost.title;
   const detaiContent= detailPost.content;
   const detailImageUrl = detailPost.imageUrl;
   const detailUserName = detailPost.userName;
   const detailCommentCnt = detailPost.commentCnt;
   const detailDayBefore = detailPost.dayBefore;
+
+  const onChangeComment = (e) => {
+    setComment(e.target.value);
+    console.log("코멘트작성");
+  };
+  const onClickComment = () => {
+    console.log(typeof postingId);
+    console.log(postingId, comment);
+    dispatch(commentActions.addCommentDB(comment, postingId));
+    console.log("작성!!");
+  };
 
   useEffect(() => {
     dispatch(postActions.detailPostMW(postingId));
@@ -64,8 +81,11 @@ const Detail = (props) => {
         <CommentWrap>
           <CommentWrite>
             <CommentCnt>{detailCommentCnt}개의 댓글</CommentCnt>
-            <CommentInput placeholder="댓글을 작성하세요"></CommentInput>
-            <CommentBtn>댓글작성</CommentBtn>
+            <CommentInput
+              placeholder="댓글을 작성하세요"
+              onChange={onChangeComment}
+            ></CommentInput>
+            <CommentBtn onClick={onClickComment}>댓글작성</CommentBtn>
           </CommentWrite>
           <CommentList>
             <Comment />
