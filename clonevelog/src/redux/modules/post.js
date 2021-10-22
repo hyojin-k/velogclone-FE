@@ -155,8 +155,8 @@ export default handleActions(
       }),
     [DELETE_POST]: (state, action) =>
       produce(state,(draft)=>{
-        // draft.list = draft.list.filter(p=>p.postingId !== action.payload.postingId)
-        draft.detail = action.payload.detail;
+        draft.list = draft.list.filter(p=>p.postingId !== action.payload.postingId)
+        // draft.detail = action.payload.detail;
       })  
   },
   initialState

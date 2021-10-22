@@ -110,8 +110,9 @@ const Header = () => {
 };
 
 const VelogImg = styled.img`
-  width: 120px;
+  width: 140px;
   margin-left: -40px;
+  cursor: pointer;
 `;
 const ModalStyle = {
   overlay: {

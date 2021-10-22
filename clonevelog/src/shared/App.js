@@ -23,7 +23,6 @@ function App() {
 
   return (
     <React.Fragment>
-      <Header />
       <ConnectedRouter history={history}>
         <Route path="/" exact component={Main} />
         <Route path="/write" exact component={Postadd} />

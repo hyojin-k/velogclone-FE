@@ -54,6 +54,7 @@ const Wrap = styled.div`
   height: 377px;
   margin: 20px 10px;
   box-shadow: 0 0 5px #dbdbdb;
+  background-color: #fff;
   &:hover {
     margin-top: 2px;
     transition: all 0.3s ease-in-out;
@@ -90,6 +91,7 @@ const TextWrap = styled.button`
   cursor: pointer;
   text-align: left;
   padding: 0;
+  word-break: break-all;
 `;
 const Title = styled.h2`
   font-size: 16px;

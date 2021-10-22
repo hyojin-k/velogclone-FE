@@ -6,9 +6,9 @@ const Comment = (props) =>{
         <React.Fragment>
             <Wrap>
                 <Profile>
-                    <User>aaa</User>
+                    <User></User>
                 </Profile>
-                <CommentArea>좋아요~</CommentArea>
+                <CommentArea></CommentArea>
             </Wrap>
         </React.Fragment>
     )

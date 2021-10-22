@@ -6,6 +6,7 @@ import { Viewer } from "@toast-ui/react-editor";
 
 import Header from "../shared/Header";
 import Comment from "../components/Comment";
+import velog from "../static/velog.png";
 
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,17 +50,16 @@ const Detail = (props) => {
     dispatch(postActions.detailPostMW(postingId));
   }, []);
 
-  const deletePost = (postingId, userName) => {};
 
   return (
     <React.Fragment>
+      <Header />
       <Wrap>
         <TitleWrap>
           <Title>{title}</Title>
           <Sub>
             <User>{detailUserName}</User>
             <Date> · {dayBefore}</Date>
-            <Delete onClick={() => deletePost()}>삭제</Delete>
           </Sub>
         </TitleWrap>
         <Content>
@@ -68,7 +68,7 @@ const Detail = (props) => {
           <img src={imageUrl} style={{ width: "100%" }} />
         </Content>
         <Profile>
-          <ProfileImage></ProfileImage>
+          <ProfileImage src={velog}></ProfileImage>
           <UserName>{detailUserName}</UserName>
         </Profile>
         <CommentWrap>
@@ -81,8 +81,6 @@ const Detail = (props) => {
             <CommentBtn onClick={onClickComment}>댓글작성</CommentBtn>
           </CommentWrite>
           <CommentList>
-            <Comment />
-            <Comment />
           </CommentList>
         </CommentWrap>
       </Wrap>
@@ -93,8 +91,6 @@ const Detail = (props) => {
 const Wrap = styled.div`
   width: 768px;
   margin: 0 auto;
-  /* border: 1px solid red;
-  box-sizing: border-box; */
 `;
 const TitleWrap = styled.div`
   margin: 60px 0;
@@ -106,28 +102,10 @@ const Sub = styled.div`
   position: relative;
 `;
 const Content = styled.div``;
-// const Image = styled.image`
-//   display: block;
-//   width: 100%;
-//   height: 300px;
-//   border: 1px solid red;
-//   box-sizing: border-box;
-// `
 const User = styled.span`
   font-weight: bold;
 `;
 const Date = styled.span``;
-const Delete = styled.button`
-  position: absolute;
-  right: 0;
-  top: 0;
-  border: none;
-  background-color: transparent;
-  color: #444;
-  font-size: 16px;
-  cursor: pointer;
-`;
-// const Content = styled.div``;
 const Profile = styled.div`
   display: flex;
   justify-content: start;
@@ -136,7 +114,7 @@ const Profile = styled.div`
   padding-bottom: 30px;
   margin: 80px 0;
 `;
-const ProfileImage = styled.image`
+const ProfileImage = styled.img`
   display: block;
   width: 128px;
   height: 128px;
@@ -147,7 +125,7 @@ const ProfileImage = styled.image`
 const UserName = styled.span`
   font-size: 24px;
   font-weight: bold;
-  margin-left: 20px;
+  margin: 40px 0 0 20px;
 `;
 
 const CommentWrap = styled.div`
