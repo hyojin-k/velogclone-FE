@@ -14,34 +14,24 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
+  const comment_list = useSelector((state) => state.post.detail?.commentList);
+  console.log(comment_list);
   const [comment, setComment] = React.useState();
-  const post = useSelector((state) => state.post.list);
-<<<<<<< HEAD
-  console.log("상세포스트", post);
-  const postingId = props.match.params.postingId;
-  console.log("파람즈 포스팅 아이디", postingId);
-
-
-  const is_login = useSelector((state) => state.user.is_login);
-  console.log("로그인 확인", is_login);
-  // const userName = useSelector((state) => state.post.list.userName);
-  // console.log("유저네임", userName);
-=======
   const postingId = Number(props.match.params.postingId);
+  const post = useSelector((state) => state.post.list);
   const is_login = useSelector((state) => state.user.is_login);
   const userName = useSelector((state) => state.post.list.userName);
->>>>>>> comment
 
   const detailPost = post.filter(
     (detailPost) => detailPost.postingId === Number(postingId)
   )[0];
-  const detailTitle = detailPost.title;
-  const detaiContent= detailPost.content;
-  const detailImageUrl = detailPost.imageUrl;
-  const detailUserName = detailPost.userName;
-  const detailCommentCnt = detailPost.commentCnt;
-  const detailDayBefore = detailPost.dayBefore;
-
+  const detailTitle = detailPost?.title;
+  const detaiContent = detailPost?.content;
+  const detailImageUrl = detailPost?.imageUrl;
+  const detailUserName = detailPost?.userName;
+  const detailCommentCnt = detailPost?.commentCnt;
+  const detailDayBefore = detailPost?.dayBefore;
+  console.log(detailPost);
   const onChangeComment = (e) => {
     setComment(e.target.value);
     console.log("코멘트작성");
@@ -51,6 +41,7 @@ const Detail = (props) => {
     console.log(postingId, comment);
     dispatch(commentActions.addCommentDB(comment, postingId));
     console.log("작성!!");
+    history.replace("/");
   };
 
   useEffect(() => {
@@ -88,8 +79,9 @@ const Detail = (props) => {
             <CommentBtn onClick={onClickComment}>댓글작성</CommentBtn>
           </CommentWrite>
           <CommentList>
-            <Comment />
-            <Comment />
+            {comment_list?.map((c, idx) => {
+              return <Comment key={idx} {...c} />;
+            })}
           </CommentList>
         </CommentWrap>
       </Wrap>

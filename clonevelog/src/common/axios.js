@@ -78,5 +78,5 @@ export const apis = {
       }
     ),
 
-  getCommentAX: (id) => instance.get(`/api/posting/${id}`),
+  getCommentAX: (postingId) => instance.get(`/api/comment/${postingId}`),
 };

@@ -23,14 +23,14 @@ const initialState = {
 };
 
 //미들웨어
-const getCommentDB = (id) => {
+const getCommentDB = (postingId) => {
   return function (dispatch, getState, { history }) {
     apis
-      .getCommentAX(id)
+      .getCommentAX(postingId)
       .then((res) => {
         console.log(res.data);
-        const comment_list = res.data;
-        dispatch(getComment(comment_list));
+
+        dispatch(getComment(postingId));
       })
       .catch((error) => {
         console.error(error);
