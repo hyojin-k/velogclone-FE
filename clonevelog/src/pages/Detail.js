@@ -15,9 +15,11 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
+  const comment_list = useSelector((state) => state.post.detail?.commentList);
+  console.log(comment_list);
   const [comment, setComment] = React.useState();
   const post = useSelector((state) => state.post.list);
-  const detail = useSelector((state)=> state.post.detail)
+  const detail = useSelector((state) => state.post.detail);
   const postingId = Number(props.match.params.postingId);
   const is_login = useSelector((state) => state.user.is_login);
   const userName = useSelector((state) => state.post.list.userName);
@@ -25,15 +27,14 @@ const Detail = (props) => {
   const detailPost = post.filter(
     (detailPost) => detailPost.postingId === Number(postingId)
   )[0];
-  const title = detail?.title
-  const content = detail?.content
-  const dayBefore = detail?.dayBefore
-  const imageUrl = detail?.imageUrl
-  const filePath = detail?.filePath
+  const title = detail?.title;
+  const content = detail?.content;
+  const dayBefore = detail?.dayBefore;
+  const imageUrl = detail?.imageUrl;
+  const filePath = detail?.filePath;
 
   const detailUserName = detailPost.userName;
   const detailCommentCnt = detailPost.commentCnt;
-
 
   const onChangeComment = (e) => {
     setComment(e.target.value);
@@ -49,7 +50,6 @@ const Detail = (props) => {
   useEffect(() => {
     dispatch(postActions.detailPostMW(postingId));
   }, []);
-
 
   return (
     <React.Fragment>
@@ -80,8 +80,9 @@ const Detail = (props) => {
             ></CommentInput>
             <CommentBtn onClick={onClickComment}>댓글작성</CommentBtn>
           </CommentWrite>
-          <CommentList>
-          </CommentList>
+          {comment_list?.map((c, idx) => {
+            return <Comment key={idx} {...c} />;
+          })}
         </CommentWrap>
       </Wrap>
     </React.Fragment>

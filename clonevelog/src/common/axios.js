@@ -58,8 +58,7 @@ export const apis = {
       },
     }),
   // 게시물 상세
-  detailPostAX: (postingId) =>
-    instance.get(`/api/posting/${postingId}`),
+  detailPostAX: (postingId) => instance.get(`/api/posting/${postingId}`),
   // 게시물 수정하기
   // editPostAX: (id, title, content) =>
   //   instance.put(`/api/posting/${id}`, { title, content }),
@@ -75,5 +74,5 @@ export const apis = {
       },
     }),
 
-  getCommentAX: (id) => instance.get(`/api/posting/${id}`),
+  getCommentAX: (postingId) => instance.get(`/api/comment/${postingId}`),
 };
