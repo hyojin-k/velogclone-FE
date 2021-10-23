@@ -33,8 +33,8 @@ const Detail = (props) => {
   const imageUrl = detail?.imageUrl;
   const filePath = detail?.filePath;
 
-  const detailUserName = detailPost.userName;
-  const detailCommentCnt = detailPost.commentCnt;
+  const detailUserName = detailPost?.userName;
+  const detailCommentCnt = detailPost?.commentCnt;
 
   const onChangeComment = (e) => {
     setComment(e.target.value);
@@ -45,6 +45,7 @@ const Detail = (props) => {
     console.log(postingId, comment);
     dispatch(commentActions.addCommentDB(comment, postingId));
     console.log("작성!!");
+    // history.replace("/");
   };
 
   useEffect(() => {
