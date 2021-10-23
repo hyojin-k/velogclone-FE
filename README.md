@@ -2,14 +2,12 @@
 
 ## 1. 시연영상
 
-[velog 클론코딩](https://www.youtube.com/watch?v=Swe7n9nAzQM
-)
+[velog 클론코딩](https://www.youtube.com/watch?v=Swe7n9nAzQM)
 
 ---
+
 ## 2. 제작기간 & 팀원소개 🏃‍🏃‍♀️ 💨
 2021.10.18 - 2021.10.22
-
----
 
 - [Front-end (React)](https://github.com/spacejay1007/velogclone-FE)
     - [김재용 👨](https://github.com/spacejay1007)
@@ -20,9 +18,9 @@
     - [배나영 👧](https://github.com/NayoungBae)
     - [정희윤 👧](https://github.com/codenamehee)
 
-## 3. 사용 기술 🔧 ⚙️
-
 ---
+
+## 3. 사용 기술 🔧 ⚙️
 
 - View : **`React with JavaScript`, `React-Router`, `material-UI`, `Styled-components`**
 - State Management : **`Redux`, `Redux-Thunk`, `Immer`, `Redux-actions`**
@@ -30,20 +28,21 @@
 - Infrastructure **`AWS S3`, `Route 53`**
 - Other Tools : **`Git`, `Github`, `notion`**
 
-## 4. 구현 기능 📃
-
 ---
+
+## 4. 구현 기능 📃
 
 - 로그인(JWT Token 인증) & 회원가입 🔓
 - 게시글 CR(UD)
 - 댓글 CR(UD)
 
-## 5. API 설계
-
 ---
+
+## 5. API 설계
 
 [API 설계](https://www.notion.so/10-Velog-53c230b04501457cbc79151ed34fb964)
 
+---
 
 ## 6. 개인 회고
 - 김재용
