@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
-import { Viewer } from "@toast-ui/react-editor";
 
 import Header from "../shared/Header";
 import Comment from "../components/Comment";
@@ -31,7 +30,6 @@ const Detail = (props) => {
   const content = detail?.content;
   const dayBefore = detail?.dayBefore;
   const imageUrl = detail?.imageUrl;
-  const filePath = detail?.filePath;
 
   const detailUserName = detailPost?.userName;
   const detailCommentCnt = detailPost?.commentCnt;
@@ -45,7 +43,7 @@ const Detail = (props) => {
     console.log(postingId, comment);
     dispatch(commentActions.addCommentDB(comment, postingId));
     console.log("작성!!");
-    // history.replace("/");
+    history.replace("/");
   };
 
   useEffect(() => {
@@ -64,7 +62,6 @@ const Detail = (props) => {
           </Sub>
         </TitleWrap>
         <Content>
-          {/* <Viewer initialValue={content} /> */}
           <div>{content}</div>
           <img src={imageUrl} style={{ width: "100%" }} />
         </Content>

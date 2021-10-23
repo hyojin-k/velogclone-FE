@@ -54,11 +54,8 @@ const PostList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: auto;
-  /* justify-content: space-around; */
   max-width: 1024px;
   margin: 0 auto;
-  /* border: 1px solid green; 
-  box-sizing: border-box; */
 `;
 
 export default Main;

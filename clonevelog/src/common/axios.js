@@ -47,8 +47,6 @@ export const apis = {
 
   // 게시물 불러오기
   getPostAX: () => instance.get("/api/posting"),
-  // 유저 게시물 불러오기
-  // getMyPostAX: (userName) => instance.get(`/api/mypage/${userName}`),
   // 게시물 작성하기
   createPostAX: (post) =>
     instance.post("/api/posting", post, {
@@ -59,11 +57,6 @@ export const apis = {
     }),
   // 게시물 상세
   detailPostAX: (postingId) => instance.get(`/api/posting/${postingId}`),
-  // 게시물 수정하기
-  // editPostAX: (id, title, content) =>
-  //   instance.put(`/api/posting/${id}`, { title, content }),
-  // 게시물 삭제하기\
-  delPostAX: (postingId) => instance.delete(`/api/posting/${postingId}`),
 
   //댓글 작성
   addCommentAX: (postingId, comment) =>

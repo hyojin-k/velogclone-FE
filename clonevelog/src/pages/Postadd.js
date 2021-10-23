@@ -10,19 +10,7 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 
 import { getCookie } from "../shared/Cookie";
-
-// import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
-// import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
-// import 'tui-color-picker/dist/tui-color-picker.css';
-// import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css'
-// import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
-
 const Postadd = (props) => {
-  // const editorRef = createRef();
-
-  // const onChangeEditorTextHandler = () =>{
-  //     console.log(editorRef.current.getInstance().getMarkdown());
-  // }
 
   const dispatch = useDispatch();
   const editorRef = useRef();
@@ -33,9 +21,7 @@ const Postadd = (props) => {
   const changeTitle = (e) => {
     setTitle(e.target.value);
   };
-  // const changeContent = (e) =>{
-  //     setContent(e.target.value);
-  // }
+
   // const dataURLtoFile = (dataurl, fileName) => {
   //   let arr = dataurl.split(","),
   //     mime = arr[0].match(/:(.*?);/)[1],
@@ -48,72 +34,26 @@ const Postadd = (props) => {
   //   return new File([u8arr], fileName, { type: mime });
   // };
 
-  // // 파일 다운로드
-  // function downloadURI(uri, name) {
-  //   let link = document.createElement("a");
-  //   link.download = name;
-  //   link.href = uri;
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  //   link.remove();
-  // }
-
   const canclePost = () => {
     history.goBack();
   };
   const addPost = () => {
-    // console.log(editorRef)
     const contentHTML = editorRef.current.getInstance().getHTML();
     const contentMarkdown = editorRef.current.getInstance().getMarkdown();
     // const image = contentHTML.split("=")[1]?.split('"')[1];
 
     const imageUrl = contentHTML.split("=")[1]?.split('"')[1];
-
     const content = contentMarkdown.replaceAll("#", "").split("!")[0];
-    // console.log(contentHTML);
-    // console.log(imageUrl);
-    // console.log(image);
-
-    // let fileName = Date.now();
-    // let file = dataURLtoFile(image, `${fileName}.jpg`);
-    // console.log(file);
-    // console.log(content);
-    // downloadURI(image, Date.now());
 
     const post = {
       // userName: jwtToken,
       content: content,
       title: title,
-      // filePath: file,
       imageUrl: imageUrl,
     };
     console.log(post);
     dispatch(postActions.addPostMW(post));
   };
-
-  // const uploadImage = (blob) => {
-  //   let formData = new FormData();
-  //   formData.append("imageFile", blob);
-  //   for (let [key, val] of formData) console.log(key, val);
-  // };
-
-  //   return axios("http://54.180.148.132", {
-  //     method: 'POST',
-  //     data: formData,
-  //     headers : {'Content-type' : 'multipart/form-data' }
-  // }).then(response => {
-  //   console.log(response);
-  // if (response.data) {
-  //   if(this.state.thumbnailcheck === 0) {
-  //     this.setState({
-  //       thumbnailchekc : 1,
-  //       thumbnail : response.data
-  //     })
-  //   }
-  //     return response.data;
-  // }
-  // throw new Error('Server or network error');
 
   return (
     <React.Fragment>
@@ -131,13 +71,6 @@ const Postadd = (props) => {
           height="80vh"
           ref={editorRef}
           event={{}}
-          // hooks={{
-          //   addImageBlobHook: async (blob, callback) => {
-          //     const upload = uploadImage(blob);
-          //     callback(upload, "alt text");
-          //     return false;
-          //   },
-          // }}
         />
       </MDWrap>
       <BtnWrap>

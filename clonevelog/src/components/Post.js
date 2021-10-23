@@ -2,12 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore";
-// import { useDispatch, useSelector } from "react-redux";
 
 const Post = (props) => {
   const {
     postingId,
-    filePath,
     title,
     content,
     dayBefore,
@@ -24,7 +22,6 @@ const Post = (props) => {
             history.push(`/detail/${postingId}`);
           }}
         >
-          {/* <Image src={filePath} /> */}
           <Image src={imageUrl} />
         </ImageBtn>
         <Description
