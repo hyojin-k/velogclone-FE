@@ -2,14 +2,12 @@
 
 ## 1. 시연영상
 
-[velog 클론코딩](https://www.youtube.com/watch?v=Swe7n9nAzQM
-)
+[velog 클론코딩](https://www.youtube.com/watch?v=Swe7n9nAzQM)
 
 ---
+
 ## 2. 제작기간 & 팀원소개 🏃‍🏃‍♀️ 💨
 2021.10.18 - 2021.10.22
-
----
 
 - [Front-end (React)](https://github.com/spacejay1007/velogclone-FE)
     - [김재용 👨](https://github.com/spacejay1007)
@@ -20,9 +18,9 @@
     - [배나영 👧](https://github.com/NayoungBae)
     - [정희윤 👧](https://github.com/codenamehee)
 
-## 3. 사용 기술 🔧 ⚙️
-
 ---
+
+## 3. 사용 기술 🔧 ⚙️
 
 - View : **`React with JavaScript`, `React-Router`, `material-UI`, `Styled-components`**
 - State Management : **`Redux`, `Redux-Thunk`, `Immer`, `Redux-actions`**
@@ -30,15 +28,23 @@
 - Infrastructure **`AWS S3`, `Route 53`**
 - Other Tools : **`Git`, `Github`, `notion`**
 
-## 4. 구현 기능 📃
-
 ---
+
+## 4. 구현 기능 📃
 
 - 로그인(JWT Token 인증) & 회원가입 🔓
 - 게시글 CR(UD)
 - 댓글 CR(UD)
 
-## 5. 개인 회고
+---
+
+## 5. API 설계
+
+[API 설계](https://www.notion.so/10-Velog-53c230b04501457cbc79151ed34fb964)
+
+---
+
+## 6. 개인 회고
 - 김재용
     - 클론 코딩 프로젝트를 진행하면서 백,프론트 작업물을 합치는 과정에서 나타나는 인증 문제를 겪고 해결해보는 좋은 경험을 했던 것 같다. 
     - 기능 측면의 목표를 잡았던 CRUD 를 모두 구현을 해내지 못한 점, 뷰에서도 제대로 구현해내지 못한 부분에서 부족함을 느꼈다.  
